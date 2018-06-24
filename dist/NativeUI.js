@@ -1,1 +1,589 @@
-eval(function(p,a,c,k,e,d){e=function(c){return c};if(!''.replace(/^/,String)){while(c--){d[c]=k[c]||c}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('45 122=(34&&34.122)||(43(){45 221=130.318||({216:[]}201 314&&43(119,79){119.216=79})||43(119,79){183(45 155 323 79)42(79.321(155))119[155]=79[155]};56 43(119,79){221(119,79);43 198(){34.291=119}119.49=79===182?130.289(79):(198.49=79.49,61 198())}})();45 41;(43(41){41[41["222"]=0]="222";41[41["224"]=1]="224";41[41["225"]=2]="225";41[41["213"]=3]="213";41[41["217"]=4]="217";41[41["215"]=5]="215";41[41["214"]=6]="214";41[41["234"]=7]="234";41[41["236"]=8]="236";41[41["237"]=9]="237";41[41["238"]=10]="238";41[41["233"]=11]="233";41[41["226"]=12]="226";41[41["193"]=13]="193";41[41["192"]=14]="192";41[41["185"]=15]="185";41[41["186"]=16]="186";41[41["206"]=17]="206";41[41["197"]=18]="197";41[41["180"]=19]="180";41[41["188"]=20]="188";41[41["191"]=21]="191";41[41["199"]=22]="199";41[41["202"]=23]="202";41[41["209"]=24]="209";41[41["211"]=25]="211";41[41["228"]=26]="228";41[41["212"]=27]="212";41[41["207"]=28]="207";41[41["208"]=29]="208";41[41["227"]=30]="227";41[41["204"]=31]="204";41[41["229"]=32]="229";41[41["205"]=33]="205"})(41||(41={}));43 248(63,147){42(147===54 0){147=99}45 131=41[63].264().290();295(63){62 41.193:62 41.192:62 41.185:62 41.186:62 41.188:62 41.191:62 41.199:62 41.202:62 41.209:62 41.211:62 41.212:62 41.207:62 41.208:62 41.204:62 41.205:56 147?131+"281":131+"282";62 41.206:62 41.197:62 41.180:56 147?131+"79":131;294:56 131}}45 64=(43(){43 64(97,95,100,110){42(97===54 0){97=255}42(95===54 0){95=255}42(100===54 0){100=255}42(110===54 0){110=255}34.97=97;34.95=95;34.100=100;34.110=110}56 64}());45 144=(43(){43 144(231,162){34.167=231;34.162=162}144.49.51=43(175,230,232,235,239,78,151){42(78===54 0){78=61 64(255,255,255)}42(151===54 0){151=0}42(34.162.138(175)!==-1){42(50.58.124.279(34.167)==99){50.58.124.298(34.167,60)}50.58.124.278(34.167,175,230,232,235,239,151,78.97,78.95,78.100,78.110)}};56 144}());45 70=61 144("261",["146","165","267","268","275","276","299","168","277","247","274","273","269","271","272","296","306","337","336","338","339","340","335","334","342","328","330","331","333","332","250","341","346","350","249","352","353","351","348","349","343","345","347","344","329","326","308","307","309","310","311","327","305","301","300","302","303","304","312","313","322"]);45 68=(43(){43 68(75,48,66,63,55,65,72,74){42(66===54 0){66=""}42(63===54 0){63=246}42(55===54 0){55=61 64(255,255,255,240)}42(65===54 0){65=61 64(0,0,0,120)}42(72===54 0){72=61 64(0,0,0,240)}42(74===54 0){74=61 64(255,255,255,170)}34.75=75;34.48=48;34.66=66;34.63=63;34.177=55;34.148=65;34.72=72;34.74=74;34.88=99;34.171=[];34.176=[]}130.156(68.49,"178",{254:43(69){45 46=34;34.88=69;42(34.88){34.176.161(43(69){42(46 201 98){69.127(46.48[46.84])}107{69.127(46.48)}})}},157:60,154:60});130.156(68.49,"55",{218:43(){56 34.88?34.72:34.177},157:60,154:60});130.156(68.49,"65",{218:43(){56 34.88?34.74:34.148},157:60,154:60});68.49.241=43(223){34.171.121(223)};68.49.320=43(219){34.176.121(219)};68.49.85=43(47,44,59){45 46=34;34.51(47,44,59);42(34.88&&86.96()-36.132>36.87){42(50.104.106(13)){50.316.317.121(34.75);34.171.161(43(69){42(46 201 98){69.127(46.48[46.84])}107{69.127(46.48)}});36.87=86.96()}}};68.49.51=43(47,44,59){50.58.124.196(47,44+36.71,36.77,36.91,34.65.97,34.65.95,34.65.100,34.65.110);45 117=47-36.93+(0.194*36.57);42(!189(34.63)){70.51(248(34.63,34.88),47-36.93+(0.103*36.57),44+36.71,(0.89*36.57),(0.143*36.67),61 64(160,160,160),0);117+=(0.315*36.57)}136(34.75,[117,44+(0.172*36.67)],34.55);42(34.88&&34.66.76>0){45 159=125.319(158(34.66)/36.77);45 174=34.66.76/159;45 173=36.91*159;70.51("168",47,59+173/2,36.77,173,61 64(34.148.97,34.148.95,34.148.100,220),270);183(45 83=0;83<159;83++){136(34.66.324(83*174,(83+1)*174),[47-36.93+(0.194*36.57),59+(0.172*36.67)+83*36.91],34.177)}}};56 68}());45 152=(43(53){122(152,53);43 152(){56 53!==182&&53.262(34,260)||34}56 152}(68));45 141=(43(53){122(141,53);43 141(75,48,66,63,55,65,72,74){42(48===54 0){48=99}45 46=53.81(34,75,48,66,63,55,65,72,74)||34;46.241({127:43(48){46.48=!46.48}});56 46};141.49.51=43(47,44,59){53.49.51.81(34,47,44,59);70.51(34.48?"249":"250",47+36.93-(0.103*36.57),44+36.71,(0.89*36.57),(0.143*36.67),61 64(),0)};56 141}(68));45 98=(43(53){122(98,53);43 98(75,48,137,66,63,55,65,72,74){42(137===54 0){137=0}45 46=53.81(34,75,48,66,63,55,65,72,74)||34;46.135=[];46.105=60;46.137=137;56 46}98.49.259=43(163){34.135.121(163)};98.49.85=43(47,44,59){42(34.48.76>0){42(34.105){34.108(34.137);34.105=99}42(34.88&&86.96()-36.132>36.87){42(50.104.106(39)){34.108(34.84+1)}107{42(50.104.106(37)){34.108(34.84-1)}}}}53.49.85.81(34,47,44,59)};98.49.51=43(47,44,59){53.49.51.81(34,47,44,59);42(34.48.76>0){42(!189(34.84)&&34.48[34.84].184!=182){45 164=47+36.93-(0.103*36.57);45 139=164-158(34.48[34.84].184)-(0.103*36.57);70.51("146",139,44+36.71,(0.89*36.57),(0.143*36.67),34.55,0);70.51("165",164,44+36.71,(0.89*36.57),(0.143*36.67),34.55,0);136(34.48[34.84].184,[(139+164)/2,44+(0.172*36.67)],34.55,(0.89*36.57),[0.35,0.35],60)}}};98.49.108=43(118){45 46=34;42(118<0){34.84=34.48.76-1}107{34.84=118%34.48.76}36.87=86.96();34.135.161(43(69){69.127(46.48[46.84])})};56 98}(68));45 126=(43(53){122(126,53);43 126(75,48,66,63,55,65,72,74){45 46=53.81(34,75,48,66,63,55,65,72,74)||34;46.102=61 109();56 46}126.49.179=43(166){34.102.179(166)};126.49.85=43(47,44,59){42(34.88){42(36.82.138(34.102)!=-1){34.102.85(47+36.77,44)}42(86.96()-36.132>36.87){42(50.104.106(39)){42(36.82.138(34.102)==-1){36.82.121(34.102);34.102.108(0)}}107{42(50.104.106(37)){42(36.82.138(34.102)!=-1){36.82.263(36.82.138(34.102),1);36.87=86.96()}}}}}34.51(47,44,59)};126.49.51=43(47,44,59){53.49.51.81(34,47,44,59);70.51("165",47+36.93-(0.103*36.57),44+36.71,(0.89*36.57),(0.143*36.67),34.55,0)};56 126}(68));45 109=(43(){43 109(){34.92=[];34.112=0}109.49.179=43(166){34.92.121(166)};109.49.85=43(47,44){34.51(47,44)};109.49.51=43(47,44){42(34.112>=36.145){70.51("168",47,44+36.116/2,36.77,36.116,61 64(0,0,0,190),90);70.51("146",47,44+36.116/2,(0.103*36.57),(0.89*36.67),61 64(255,255,255,200),90);44+=36.116}45 83=125.111(0,34.112+1-36.145);45 181=125.113(83+36.145,34.92.76);45 252=44+((181-83)*36.91)+(0.265*36.67);183(;83<181;83++){34.92[83].85(47,44,252);44+=36.91}42(34.92.76>36.145&&34.112<34.92.76-1){70.51("168",47,44+36.116/2,36.77,36.116,61 64(0,0,0,190),270);70.51("146",47,44+36.116/2,(0.103*36.57),(0.89*36.67),61 64(255,255,255,200),270)}};109.49.108=43(118){34.92[34.112].178=99;42(118<0){118=34.92.76-1}107{118%=34.92.76}34.112=118;34.92[34.112].178=60;36.87=61 86().297()};56 109}());45 36=(43(53){122(36,53);43 36(128,115){42(128===54 0){128=""}42(115===54 0){115=60}45 46=53.81(34)||34;46.128=128;46.115=115;46.105=60;36.82.121(46);56 46}130.156(36.49,"128",{254:43(69){34.203=69},157:60,154:60});36.49.85=43(47,44){42(34.105){34.108(0);34.105=99}34.243();42(34.115){47=125.113(36.93+47,1-36.93);44=125.113(36.71+44,1-36.71);70.51("247",47,44,36.77,36.210,61 64(255,255,255,255),0);136(34.203,[47,44-36.71*1.4],61 64(),1,[1,1],60);44+=(36.210/2);42(86.96()-36.132>36.87){42(50.104.106(40)){45 129=36.82[36.82.76-1];129.108(129.112+1)}107{42(50.104.106(38)){45 129=36.82[36.82.76-1];129.108(129.112-1)}}}53.49.85.81(34,47,44)}};36.49.243=43(){36.57=288/50.58.124.242(0,0).47;36.67=280/50.58.124.242(0,0).44;36.77=0.27*36.57;36.77=125.111(36.77,158(34.203,1,[1,1])+36.77/5);36.91=0.284*36.67;36.210=36.91*2.5;36.93=36.77/2;36.71=36.91/2;36.116=36.91/3};36.49.286=43(){34.115=60};36.49.285=43(){34.115=99};36.145=8;36.132=150;36.87=86.96();36.82=[];56 36}(109));45 114=(43(53){122(114,53);43 114(75,113,111,134,48,66,63,55,65,72,74){42(48===54 0){48=246}45 46=53.81(34,75,48,66,63,55,65,72,74)||34;46.113=113;46.111=111;46.134=134;42(189(48)){46.48=125.292((46.113+46.111)/2)}46.105=60;46.135=[];56 46};114.49.259=43(163){34.135.121(163)};114.49.85=43(47,44,59){42(34.105){34.169(34.48);34.105=99}42(34.88&&86.96()-36.132>36.87){42(50.104.106(39)){34.169(34.48+34.134)}107{42(50.104.106(37)){34.169(34.48-34.134)}}}53.49.85.81(34,47,44,59)};114.49.51=43(47,44,59){53.49.51.81(34,47,44,59);45 258=(0.103*36.57);45 117=47+36.93-258;45 133=36.77/2.5;45 195=36.91/4;45 257=117-(133/2);50.58.124.196(257,44+36.71,133,195,52,73,94,255);45 256=117-133+(133/(34.113+34.111)*34.48);50.58.124.196(256,44+36.71,0.194,195*2,34.55.97,34.55.95,34.55.100,34.55.110);45 142=(0.103*36.57);45 139=117-133-(142/2);70.51("146",139,44+36.71,142,(0.89*36.67),34.55,0);70.51("165",117+(142/2),44+36.71,142,(0.89*36.67),34.55,0)};114.49.169=43(187){45 46=34;42(187<34.113){34.48=34.111}107{34.48=187%(34.111+34.134)}36.87=86.96();34.135.161(43(69){69.127(46.48)})};56 114}(68));43 136(149,140,78,123,101,153){42(140===54 0){140=[]}42(123===54 0){123=0}42(101===54 0){101=[0.35,0.35]}42(153===54 0){153=99}50.58.80.245(123);50.58.80.244(101[0]*36.57,101[1]*36.67);50.58.80.266(78.97,78.95,78.100,78.110);50.58.80.283(153);50.58.80.287("251");50.58.80.253(149);50.58.80.136(140[0],140[1])}43 158(149,123,101){42(123===54 0){123=0}42(101===54 0){101=[0.35,0.35]}50.58.80.245(123);50.58.80.244(101[0],101[1]);50.58.80.293("251");50.58.80.253(149);56 50.58.80.325(60)}',10,354,'||||||||||||||||||||||||||||||||||this||MainMenu|||||MenuBadge|if|function|y|var|_this|x|data|prototype|mp|draw||_super|void|textColor|return|SCREEN_RATIO_WIDTH|game|yCaption|true|new|case|badge|Color|backgroundColor|caption|SCREEN_RATIO_HEIGHT|MenuItem|value|CommonMenuTexture|MENU_DRAW_OFFSET_Y|hoverTextColor||hoverBackgroundColor|displayText|length|MENU_WIDTH|color|b|ui|call|MenuInstances|i|dataCurrentIndex|render|Date|LAST_TICK_TIME|_active|025||MENU_HEIGHT|menuItems|MENU_DRAW_OFFSET_X||green|now|red|ListMenuItem|false|blue|scale|menu|015|keys|firstRender|isDown|else|setToItem|Menu|alpha|max|currentIndexMenuItems|min|SliderMenuItem|isVisible|MENU_ARROW_DOWN_HEIGHT|xOffset|newIndex|d||push|__extends|font|graphics|Math|SubMenuItem|trigger|title|menuInstance|Object|result|CONTROL_TICK_TIME_MS|sliderWidth|step|onChangeEvents|drawText|defaultIndex|indexOf|xLeftArrowPosition|position|CheckboxMenuItem|arrowWidth|035|TextureDictionnary|MAX_MENU_DISPLAY|arrowleft|isHover|_backgroundColor|text||heading|TextMenuItem|isTextCenter|configurable|p|defineProperty|enumerable|getTextWidth|numberOfLine||forEach|textures|onChangeEvent|xRightArrowPosition|arrowright|menuItem|textureDictionnary|gradient_nav|setToValue||onClickEvents|005|textureHeight|textLengthPerLine|textureName|onSelectEvents|_textColor|active|add|SHOP_BOX_TICK|to|null|for|DisplayText|SHOP_ARROWS_UPANDDOWN|SHOP_BARBER|newValue|SHOP_CLOTHING|isNaN||SHOP_FRANKLIN|SHOP_ARMOUR|SHOP_AMMO|004|sliderHeight|drawRect|SHOP_BOX_CROSS|__|SHOP_GARAGE_BIKE||instanceof|SHOP_GARAGE|_title|SHOP_TATTOOS|SHOP_TREVOR|SHOP_BOX_BLANK|SHOP_MASK|SHOP_MICHAEL|SHOP_GUNCLUB|MAIN_MENU_HEIGHT|SHOP_HEALTH|SHOP_MAKEUP|MP_ALERTTRIANGLE|MP_MEDAL_GOLD|MP_MEDAL_BRONZE|__proto__|MP_HOSTCROWN|get|onSelectEvent||extendStatics|MEDAL_BRONZE|onClickEvent|MEDAL_GOLD|MEDAL_SILVER|MP_SPECITEM_WEED|SHOP_NEW_STAR|SHOP_LOCK|SHOP_TICK_ICON|screenX|textureDict|screenY|MP_SPECITEM_METH|MP_MEDAL_SILVER|scaleX|MP_SPECITEM_CASH|MP_SPECITEM_COKE|MP_SPECITEM_HEROIN|scaleY||addOnClickEvent|getScreenActiveResolution|setResolutionRatio|setTextScale|setTextFont|NaN|interaction_bgd|MenuBadgeToSpriteName|shop_box_tick|shop_box_blank|STRING|captionYOffset|addTextComponentSubstringPlayerName|set||xDataPosition|xPosition|xMargin|addOnChangeEvent|arguments|commonmenu|apply|splice|toString|02|setTextColour|bettingbox_centre|bettingbox_left|medal_silver||mp_alerttriangle|mp_hostcrown|medal_gold|medal_bronze|bettingbox_right|common_medal|header_gradient_script|drawSprite|hasStreamedTextureDictLoaded|768|_icon_a|_icon_b|setTextCentre|04|close|open|setTextEntry|1024|create|toLowerCase|constructor|floor|setTextEntryForWidth|default|switch|mp_medal_bronze|getTime|requestStreamedTextureDict|gradient_bgd|shop_michael_icon_b|shop_michael_icon_a|shop_new_star|shop_tattoos_icon_a|shop_tattoos_icon_b|shop_mask_icon_b|mp_medal_gold|shop_health_icon_b|shop_health_icon_a|shop_lock|shop_makeup_icon_a|shop_makeup_icon_b|shop_tick_icon|shop_trevor_icon_a|Array|023|gui|chat|setPrototypeOf|ceil|addOnSelectEvent|hasOwnProperty|shop_trevor_icon_b|in|substring|getTextScreenWidth|shop_gunclub_icon_b|shop_mask_icon_a|shop_armour_icon_a|shop_gunclub_icon_a|shop_armour_icon_b|shop_arrows_upanddown|shop_barber_icon_b|shop_barber_icon_a|shop_ammo_icon_a|mp_specitem_weed|mp_specitem_cash|mp_medal_silver|mp_specitem_coke|mp_specitem_heroin|mp_specitem_meth|shop_box_blankb|shop_ammo_icon_b|shop_garage_bike_icon_a|shop_garage_icon_b|shop_garage_bike_icon_b|shop_box_cross|shop_garage_icon_a|shop_franklin_icon_a|shop_franklin_icon_b|shop_box_crossb|shop_clothing_icon_b|shop_box_tickb|shop_clothing_icon_a'.split('|'),0,{}))
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var MenuBadge;
+(function (MenuBadge) {
+    MenuBadge[MenuBadge["MEDAL_BRONZE"] = 0] = "MEDAL_BRONZE";
+    MenuBadge[MenuBadge["MEDAL_GOLD"] = 1] = "MEDAL_GOLD";
+    MenuBadge[MenuBadge["MEDAL_SILVER"] = 2] = "MEDAL_SILVER";
+    MenuBadge[MenuBadge["MP_ALERTTRIANGLE"] = 3] = "MP_ALERTTRIANGLE";
+    MenuBadge[MenuBadge["MP_HOSTCROWN"] = 4] = "MP_HOSTCROWN";
+    MenuBadge[MenuBadge["MP_MEDAL_BRONZE"] = 5] = "MP_MEDAL_BRONZE";
+    MenuBadge[MenuBadge["MP_MEDAL_GOLD"] = 6] = "MP_MEDAL_GOLD";
+    MenuBadge[MenuBadge["MP_MEDAL_SILVER"] = 7] = "MP_MEDAL_SILVER";
+    MenuBadge[MenuBadge["MP_SPECITEM_CASH"] = 8] = "MP_SPECITEM_CASH";
+    MenuBadge[MenuBadge["MP_SPECITEM_COKE"] = 9] = "MP_SPECITEM_COKE";
+    MenuBadge[MenuBadge["MP_SPECITEM_HEROIN"] = 10] = "MP_SPECITEM_HEROIN";
+    MenuBadge[MenuBadge["MP_SPECITEM_METH"] = 11] = "MP_SPECITEM_METH";
+    MenuBadge[MenuBadge["MP_SPECITEM_WEED"] = 12] = "MP_SPECITEM_WEED";
+    MenuBadge[MenuBadge["SHOP_AMMO"] = 13] = "SHOP_AMMO";
+    MenuBadge[MenuBadge["SHOP_ARMOUR"] = 14] = "SHOP_ARMOUR";
+    MenuBadge[MenuBadge["SHOP_ARROWS_UPANDDOWN"] = 15] = "SHOP_ARROWS_UPANDDOWN";
+    MenuBadge[MenuBadge["SHOP_BARBER"] = 16] = "SHOP_BARBER";
+    MenuBadge[MenuBadge["SHOP_BOX_BLANK"] = 17] = "SHOP_BOX_BLANK";
+    MenuBadge[MenuBadge["SHOP_BOX_CROSS"] = 18] = "SHOP_BOX_CROSS";
+    MenuBadge[MenuBadge["SHOP_BOX_TICK"] = 19] = "SHOP_BOX_TICK";
+    MenuBadge[MenuBadge["SHOP_CLOTHING"] = 20] = "SHOP_CLOTHING";
+    MenuBadge[MenuBadge["SHOP_FRANKLIN"] = 21] = "SHOP_FRANKLIN";
+    MenuBadge[MenuBadge["SHOP_GARAGE_BIKE"] = 22] = "SHOP_GARAGE_BIKE";
+    MenuBadge[MenuBadge["SHOP_GARAGE"] = 23] = "SHOP_GARAGE";
+    MenuBadge[MenuBadge["SHOP_GUNCLUB"] = 24] = "SHOP_GUNCLUB";
+    MenuBadge[MenuBadge["SHOP_HEALTH"] = 25] = "SHOP_HEALTH";
+    MenuBadge[MenuBadge["SHOP_LOCK"] = 26] = "SHOP_LOCK";
+    MenuBadge[MenuBadge["SHOP_MAKEUP"] = 27] = "SHOP_MAKEUP";
+    MenuBadge[MenuBadge["SHOP_MASK"] = 28] = "SHOP_MASK";
+    MenuBadge[MenuBadge["SHOP_MICHAEL"] = 29] = "SHOP_MICHAEL";
+    MenuBadge[MenuBadge["SHOP_NEW_STAR"] = 30] = "SHOP_NEW_STAR";
+    MenuBadge[MenuBadge["SHOP_TATTOOS"] = 31] = "SHOP_TATTOOS";
+    MenuBadge[MenuBadge["SHOP_TICK_ICON"] = 32] = "SHOP_TICK_ICON";
+    MenuBadge[MenuBadge["SHOP_TREVOR"] = 33] = "SHOP_TREVOR";
+})(MenuBadge || (MenuBadge = {}));
+function MenuBadgeToSpriteName(badge, isHover) {
+    if (isHover === void 0) { isHover = false; }
+    var result = MenuBadge[badge].toString().toLowerCase();
+    switch (badge) {
+        case MenuBadge.SHOP_AMMO:
+        case MenuBadge.SHOP_ARMOUR:
+        case MenuBadge.SHOP_ARROWS_UPANDDOWN:
+        case MenuBadge.SHOP_BARBER:
+        case MenuBadge.SHOP_CLOTHING:
+        case MenuBadge.SHOP_FRANKLIN:
+        case MenuBadge.SHOP_GARAGE_BIKE:
+        case MenuBadge.SHOP_GARAGE:
+        case MenuBadge.SHOP_GUNCLUB:
+        case MenuBadge.SHOP_HEALTH:
+        case MenuBadge.SHOP_MAKEUP:
+        case MenuBadge.SHOP_MASK:
+        case MenuBadge.SHOP_MICHAEL:
+        case MenuBadge.SHOP_TATTOOS:
+        case MenuBadge.SHOP_TREVOR:
+            return isHover ? result + "_icon_a" : result + "_icon_b";
+        case MenuBadge.SHOP_BOX_BLANK:
+        case MenuBadge.SHOP_BOX_CROSS:
+        case MenuBadge.SHOP_BOX_TICK:
+            return isHover ? result + "b" : result;
+        default:
+            return result;
+    }
+}
+var Color = (function () {
+    function Color(red, green, blue, alpha) {
+        if (red === void 0) { red = 255; }
+        if (green === void 0) { green = 255; }
+        if (blue === void 0) { blue = 255; }
+        if (alpha === void 0) { alpha = 255; }
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
+        this.alpha = alpha;
+    }
+    return Color;
+}());
+var TextureDictionnary = (function () {
+    function TextureDictionnary(textureDict, textures) {
+        this.textureDictionnary = textureDict;
+        this.textures = textures;
+    }
+    TextureDictionnary.prototype.draw = function (textureName, screenX, screenY, scaleX, scaleY, color, heading) {
+        if (color === void 0) { color = new Color(255, 255, 255); }
+        if (heading === void 0) { heading = 0; }
+        if (this.textures.indexOf(textureName) !== -1) {
+            if (mp.game.graphics.hasStreamedTextureDictLoaded(this.textureDictionnary) == false) {
+                mp.game.graphics.requestStreamedTextureDict(this.textureDictionnary, true);
+            }
+            mp.game.graphics.drawSprite(this.textureDictionnary, textureName, screenX, screenY, scaleX, scaleY, heading, color.red, color.green, color.blue, color.alpha);
+        }
+    };
+    return TextureDictionnary;
+}());
+var CommonMenuTexture = new TextureDictionnary("commonmenu", [
+    "arrowleft",
+    "arrowright",
+    "bettingbox_centre",
+    "bettingbox_left",
+    "bettingbox_right",
+    "common_medal",
+    "gradient_bgd",
+    "gradient_nav",
+    "header_gradient_script",
+    "interaction_bgd",
+    "medal_bronze",
+    "medal_gold",
+    "medal_silver",
+    "mp_alerttriangle",
+    "mp_hostcrown",
+    "mp_medal_bronze",
+    "mp_medal_gold",
+    "mp_medal_silver",
+    "mp_specitem_cash",
+    "mp_specitem_coke",
+    "mp_specitem_heroin",
+    "mp_specitem_meth",
+    "mp_specitem_weed",
+    "shop_ammo_icon_a",
+    "shop_ammo_icon_b",
+    "shop_armour_icon_a",
+    "shop_armour_icon_b",
+    "shop_arrows_upanddown",
+    "shop_barber_icon_a",
+    "shop_barber_icon_b",
+    "shop_box_blank",
+    "shop_box_blankb",
+    "shop_box_cross",
+    "shop_box_crossb",
+    "shop_box_tick",
+    "shop_box_tickb",
+    "shop_clothing_icon_a",
+    "shop_clothing_icon_b",
+    "shop_franklin_icon_a",
+    "shop_franklin_icon_b",
+    "shop_garage_bike_icon_a",
+    "shop_garage_bike_icon_b",
+    "shop_garage_icon_a",
+    "shop_garage_icon_b",
+    "shop_gunclub_icon_a",
+    "shop_gunclub_icon_b",
+    "shop_health_icon_a",
+    "shop_health_icon_b",
+    "shop_lock",
+    "shop_makeup_icon_a",
+    "shop_makeup_icon_b",
+    "shop_mask_icon_a",
+    "shop_mask_icon_b",
+    "shop_michael_icon_a",
+    "shop_michael_icon_b",
+    "shop_new_star",
+    "shop_tattoos_icon_a",
+    "shop_tattoos_icon_b",
+    "shop_tick_icon",
+    "shop_trevor_icon_a",
+    "shop_trevor_icon_b"
+]);
+function drawText(text, position, color, font, scale, isTextCenter) {
+    if (position === void 0) { position = []; }
+    if (font === void 0) { font = 0; }
+    if (scale === void 0) { scale = [0.35, 0.35]; }
+    if (isTextCenter === void 0) { isTextCenter = false; }
+    mp.game.ui.setTextFont(font);
+    mp.game.ui.setTextScale(scale[0] * MainMenu.SCREEN_RATIO_WIDTH, scale[1] * MainMenu.SCREEN_RATIO_HEIGHT);
+    mp.game.ui.setTextColour(color.red, color.green, color.blue, color.alpha);
+    mp.game.ui.setTextCentre(isTextCenter);
+    mp.game.ui.setTextEntry("STRING");
+    mp.game.ui.addTextComponentSubstringPlayerName(text);
+    mp.game.ui.drawText(position[0], position[1]);
+}
+function getTextWidth(text, font, scale) {
+    if (font === void 0) { font = 0; }
+    if (scale === void 0) { scale = [0.35, 0.35]; }
+    mp.game.ui.setTextFont(font);
+    mp.game.ui.setTextScale(scale[0], scale[1]);
+    mp.game.ui.setTextEntryForWidth("STRING");
+    mp.game.ui.addTextComponentSubstringPlayerName(text);
+    return mp.game.ui.getTextScreenWidth(true);
+}
+var MenuItem = (function () {
+    function MenuItem(displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) {
+        if (caption === void 0) { caption = ""; }
+        if (badge === void 0) { badge = NaN; }
+        if (textColor === void 0) { textColor = new Color(255, 255, 255, 240); }
+        if (backgroundColor === void 0) { backgroundColor = new Color(0, 0, 0, 120); }
+        if (hoverTextColor === void 0) { hoverTextColor = new Color(0, 0, 0, 240); }
+        if (hoverBackgroundColor === void 0) { hoverBackgroundColor = new Color(255, 255, 255, 170); }
+        this.displayText = displayText;
+        this.data = data;
+        this.caption = caption;
+        this.badge = badge;
+        this._textColor = textColor;
+        this._backgroundColor = backgroundColor;
+        this.hoverTextColor = hoverTextColor;
+        this.hoverBackgroundColor = hoverBackgroundColor;
+        this._active = false;
+        this.onClickEvents = [];
+        this.onSelectEvents = [];
+    }
+    Object.defineProperty(MenuItem.prototype, "active", {
+        set: function (value) {
+            var _this = this;
+            this._active = value;
+            if (this._active) {
+                this.onSelectEvents.forEach(function (value) {
+                    if (_this instanceof ListMenuItem) {
+                        value.trigger(_this.data[_this.dataCurrentIndex]);
+                    }
+                    else {
+                        value.trigger(_this.data);
+                    }
+                });
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MenuItem.prototype, "textColor", {
+        get: function () {
+            return this._active ? this.hoverTextColor : this._textColor;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MenuItem.prototype, "backgroundColor", {
+        get: function () {
+            return this._active ? this.hoverBackgroundColor : this._backgroundColor;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MenuItem.prototype.addOnClickEvent = function (onClickEvent) {
+        this.onClickEvents.push(onClickEvent);
+    };
+    MenuItem.prototype.addOnSelectEvent = function (onSelectEvent) {
+        this.onSelectEvents.push(onSelectEvent);
+    };
+    MenuItem.prototype.render = function (x, y, yCaption) {
+        var _this = this;
+        this.draw(x, y, yCaption);
+        if (this._active && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
+            if (mp.keys.isDown(13)) {
+                mp.gui.chat.push(this.displayText);
+                this.onClickEvents.forEach(function (value) {
+                    if (_this instanceof ListMenuItem) {
+                        value.trigger(_this.data[_this.dataCurrentIndex]);
+                    }
+                    else {
+                        value.trigger(_this.data);
+                    }
+                });
+                MainMenu.LAST_TICK_TIME = Date.now();
+            }
+        }
+    };
+    MenuItem.prototype.draw = function (x, y, yCaption) {
+        mp.game.graphics.drawRect(x, y + MainMenu.MENU_DRAW_OFFSET_Y, MainMenu.MENU_WIDTH, MainMenu.MENU_HEIGHT, this.backgroundColor.red, this.backgroundColor.green, this.backgroundColor.blue, this.backgroundColor.alpha);
+        var xOffset = x - MainMenu.MENU_DRAW_OFFSET_X + (0.004 * MainMenu.SCREEN_RATIO_WIDTH);
+        if (!isNaN(this.badge)) {
+            CommonMenuTexture.draw(MenuBadgeToSpriteName(this.badge, this._active), x - MainMenu.MENU_DRAW_OFFSET_X + (0.015 * MainMenu.SCREEN_RATIO_WIDTH), y + MainMenu.MENU_DRAW_OFFSET_Y, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), (0.035 * MainMenu.SCREEN_RATIO_HEIGHT), new Color(160, 160, 160), 0);
+            xOffset += (0.023 * MainMenu.SCREEN_RATIO_WIDTH);
+        }
+        drawText(this.displayText, [xOffset, y + (0.005 * MainMenu.SCREEN_RATIO_HEIGHT)], this.textColor);
+        if (this._active && this.caption.length > 0) {
+            var numberOfLine = Math.ceil(getTextWidth(this.caption) / MainMenu.MENU_WIDTH);
+            var textLengthPerLine = this.caption.length / numberOfLine;
+            var textureHeight = MainMenu.MENU_HEIGHT * numberOfLine;
+            CommonMenuTexture.draw("gradient_nav", x, yCaption + textureHeight / 2, MainMenu.MENU_WIDTH, textureHeight, new Color(this._backgroundColor.red, this._backgroundColor.green, this._backgroundColor.blue, 220), 270);
+            for (var i = 0; i < numberOfLine; i++) {
+                drawText(this.caption.substring(i * textLengthPerLine, (i + 1) * textLengthPerLine), [x - MainMenu.MENU_DRAW_OFFSET_X + (0.004 * MainMenu.SCREEN_RATIO_WIDTH), yCaption + (0.005 * MainMenu.SCREEN_RATIO_HEIGHT) + i * MainMenu.MENU_HEIGHT], this._textColor);
+            }
+        }
+    };
+    return MenuItem;
+}());
+var TextMenuItem = (function (_super) {
+    __extends(TextMenuItem, _super);
+    function TextMenuItem() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return TextMenuItem;
+}(MenuItem));
+var CheckboxMenuItem = (function (_super) {
+    __extends(CheckboxMenuItem, _super);
+    function CheckboxMenuItem(displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) {
+        if (data === void 0) { data = false; }
+        var _this = _super.call(this, displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) || this;
+        _this.addOnClickEvent({
+            trigger: function (data) {
+                _this.data = !_this.data;
+            }
+        });
+        return _this;
+    }
+    ;
+    CheckboxMenuItem.prototype.draw = function (x, y, yCaption) {
+        _super.prototype.draw.call(this, x, y, yCaption);
+        CommonMenuTexture.draw(this.data ? "shop_box_tick" : "shop_box_blank", x + MainMenu.MENU_DRAW_OFFSET_X - (0.015 * MainMenu.SCREEN_RATIO_WIDTH), y + MainMenu.MENU_DRAW_OFFSET_Y, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), (0.035 * MainMenu.SCREEN_RATIO_HEIGHT), new Color(), 0);
+    };
+    return CheckboxMenuItem;
+}(MenuItem));
+var ListMenuItem = (function (_super) {
+    __extends(ListMenuItem, _super);
+    function ListMenuItem(displayText, data, defaultIndex, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) {
+        if (defaultIndex === void 0) { defaultIndex = 0; }
+        var _this = _super.call(this, displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) || this;
+        _this.onChangeEvents = [];
+        _this.firstRender = true;
+        _this.defaultIndex = defaultIndex;
+        return _this;
+    }
+    ListMenuItem.prototype.addOnChangeEvent = function (onChangeEvent) {
+        this.onChangeEvents.push(onChangeEvent);
+    };
+    ListMenuItem.prototype.render = function (x, y, yCaption) {
+        if (this.data.length > 0) {
+            if (this.firstRender) {
+                this.setToItem(this.defaultIndex);
+                this.firstRender = false;
+            }
+            if (this._active && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
+                if (mp.keys.isDown(39)) {
+                    this.setToItem(this.dataCurrentIndex + 1);
+                }
+                else {
+                    if (mp.keys.isDown(37)) {
+                        this.setToItem(this.dataCurrentIndex - 1);
+                    }
+                }
+            }
+        }
+        _super.prototype.render.call(this, x, y, yCaption);
+    };
+    ListMenuItem.prototype.draw = function (x, y, yCaption) {
+        _super.prototype.draw.call(this, x, y, yCaption);
+        if (this.data.length > 0) {
+            if (!isNaN(this.dataCurrentIndex) && this.data[this.dataCurrentIndex].DisplayText != null) {
+                var xRightArrowPosition = x + MainMenu.MENU_DRAW_OFFSET_X - (0.015 * MainMenu.SCREEN_RATIO_WIDTH);
+                var xLeftArrowPosition = xRightArrowPosition - getTextWidth(this.data[this.dataCurrentIndex].DisplayText) - (0.015 * MainMenu.SCREEN_RATIO_WIDTH);
+                CommonMenuTexture.draw("arrowleft", xLeftArrowPosition, y + MainMenu.MENU_DRAW_OFFSET_Y, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), (0.035 * MainMenu.SCREEN_RATIO_HEIGHT), this.textColor, 0);
+                CommonMenuTexture.draw("arrowright", xRightArrowPosition, y + MainMenu.MENU_DRAW_OFFSET_Y, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), (0.035 * MainMenu.SCREEN_RATIO_HEIGHT), this.textColor, 0);
+                drawText(this.data[this.dataCurrentIndex].DisplayText, [(xLeftArrowPosition + xRightArrowPosition) / 2, y + (0.005 * MainMenu.SCREEN_RATIO_HEIGHT)], this.textColor, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), [0.35, 0.35], true);
+            }
+        }
+    };
+    ListMenuItem.prototype.setToItem = function (newIndex) {
+        var _this = this;
+        if (newIndex < 0) {
+            this.dataCurrentIndex = this.data.length - 1;
+        }
+        else {
+            this.dataCurrentIndex = newIndex % this.data.length;
+        }
+        MainMenu.LAST_TICK_TIME = Date.now();
+        this.onChangeEvents.forEach(function (value) {
+            value.trigger(_this.data[_this.dataCurrentIndex]);
+        });
+    };
+    return ListMenuItem;
+}(MenuItem));
+var SliderMenuItem = (function (_super) {
+    __extends(SliderMenuItem, _super);
+    function SliderMenuItem(displayText, min, max, step, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) {
+        if (data === void 0) { data = NaN; }
+        var _this = _super.call(this, displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) || this;
+        _this.min = min;
+        _this.max = max;
+        _this.step = step;
+        if (isNaN(data)) {
+            _this.data = Math.floor((_this.min + _this.max) / 2);
+        }
+        _this.firstRender = true;
+        _this.onChangeEvents = [];
+        return _this;
+    }
+    ;
+    SliderMenuItem.prototype.addOnChangeEvent = function (onChangeEvent) {
+        this.onChangeEvents.push(onChangeEvent);
+    };
+    SliderMenuItem.prototype.render = function (x, y, yCaption) {
+        if (this.firstRender) {
+            this.setToValue(this.data);
+            this.firstRender = false;
+        }
+        if (this._active && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
+            if (mp.keys.isDown(39)) {
+                this.setToValue(this.data + this.step);
+            }
+            else {
+                if (mp.keys.isDown(37)) {
+                    this.setToValue(this.data - this.step);
+                }
+            }
+        }
+        _super.prototype.render.call(this, x, y, yCaption);
+    };
+    SliderMenuItem.prototype.draw = function (x, y, yCaption) {
+        _super.prototype.draw.call(this, x, y, yCaption);
+        var xMargin = (0.015 * MainMenu.SCREEN_RATIO_WIDTH);
+        var xOffset = x + MainMenu.MENU_DRAW_OFFSET_X - xMargin;
+        var sliderWidth = MainMenu.MENU_WIDTH / 2.5;
+        var sliderHeight = MainMenu.MENU_HEIGHT / 4;
+        var xPosition = xOffset - (sliderWidth / 2);
+        mp.game.graphics.drawRect(xPosition, y + MainMenu.MENU_DRAW_OFFSET_Y, sliderWidth, sliderHeight, 52, 73, 94, 255);
+        var xDataPosition = xOffset - sliderWidth + (sliderWidth / (this.min + this.max) * this.data);
+        mp.game.graphics.drawRect(xDataPosition, y + MainMenu.MENU_DRAW_OFFSET_Y, 0.004, sliderHeight * 2, this.textColor.red, this.textColor.green, this.textColor.blue, this.textColor.alpha);
+        var arrowWidth = (0.015 * MainMenu.SCREEN_RATIO_WIDTH);
+        var xLeftArrowPosition = xOffset - sliderWidth - (arrowWidth / 2);
+        CommonMenuTexture.draw("arrowleft", xLeftArrowPosition, y + MainMenu.MENU_DRAW_OFFSET_Y, arrowWidth, (0.025 * MainMenu.SCREEN_RATIO_HEIGHT), this.textColor, 0);
+        CommonMenuTexture.draw("arrowright", xOffset + (arrowWidth / 2), y + MainMenu.MENU_DRAW_OFFSET_Y, arrowWidth, (0.025 * MainMenu.SCREEN_RATIO_HEIGHT), this.textColor, 0);
+    };
+    SliderMenuItem.prototype.setToValue = function (newValue) {
+        var _this = this;
+        if (newValue < this.min) {
+            this.data = this.max;
+        }
+        else {
+            this.data = newValue % (this.max + this.step);
+        }
+        MainMenu.LAST_TICK_TIME = Date.now();
+        this.onChangeEvents.forEach(function (value) {
+            value.trigger(_this.data);
+        });
+    };
+    return SliderMenuItem;
+}(MenuItem));
+var Menu = (function () {
+    function Menu() {
+        this.menuItems = [];
+        this.currentIndexMenuItems = 0;
+    }
+    Menu.prototype.add = function (menuItem) {
+        this.menuItems.push(menuItem);
+    };
+    Menu.prototype.render = function (x, y) {
+        this.draw(x, y);
+    };
+    Menu.prototype.draw = function (x, y) {
+        if (this.currentIndexMenuItems >= MainMenu.MAX_MENU_DISPLAY) {
+            CommonMenuTexture.draw("gradient_nav", x, y + MainMenu.MENU_ARROW_DOWN_HEIGHT / 2, MainMenu.MENU_WIDTH, MainMenu.MENU_ARROW_DOWN_HEIGHT, new Color(0, 0, 0, 190), 90);
+            CommonMenuTexture.draw("arrowleft", x, y + MainMenu.MENU_ARROW_DOWN_HEIGHT / 2, (0.015 * MainMenu.SCREEN_RATIO_WIDTH), (0.025 * MainMenu.SCREEN_RATIO_HEIGHT), new Color(255, 255, 255, 200), 90);
+            y += MainMenu.MENU_ARROW_DOWN_HEIGHT;
+        }
+        var i = Math.max(0, this.currentIndexMenuItems + 1 - MainMenu.MAX_MENU_DISPLAY);
+        var to = Math.min(i + MainMenu.MAX_MENU_DISPLAY, this.menuItems.length);
+        var captionYOffset = y + ((to - i) * MainMenu.MENU_HEIGHT) + (0.02 * MainMenu.SCREEN_RATIO_HEIGHT);
+        for (; i < to; i++) {
+            this.menuItems[i].render(x, y, captionYOffset);
+            y += MainMenu.MENU_HEIGHT;
+        }
+        if (this.menuItems.length > MainMenu.MAX_MENU_DISPLAY && this.currentIndexMenuItems < this.menuItems.length - 1) {
+            CommonMenuTexture.draw("gradient_nav", x, y + MainMenu.MENU_ARROW_DOWN_HEIGHT / 2, MainMenu.MENU_WIDTH, MainMenu.MENU_ARROW_DOWN_HEIGHT, new Color(0, 0, 0, 190), 270);
+            CommonMenuTexture.draw("arrowleft", x, y + MainMenu.MENU_ARROW_DOWN_HEIGHT / 2, (0.015 * MainMenu.SCREEN_RATIO_WIDTH), (0.025 * MainMenu.SCREEN_RATIO_HEIGHT), new Color(255, 255, 255, 200), 270);
+        }
+    };
+    Menu.prototype.setToItem = function (newIndex) {
+        this.menuItems[this.currentIndexMenuItems].active = false;
+        if (newIndex < 0) {
+            newIndex = this.menuItems.length - 1;
+        }
+        else {
+            newIndex %= this.menuItems.length;
+        }
+        this.currentIndexMenuItems = newIndex;
+        this.menuItems[this.currentIndexMenuItems].active = true;
+        MainMenu.LAST_TICK_TIME = new Date().getTime();
+    };
+    return Menu;
+}());
+var SubMenuItem = (function (_super) {
+    __extends(SubMenuItem, _super);
+    function SubMenuItem(displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) {
+        var _this = _super.call(this, displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) || this;
+        _this.menu = new Menu();
+        return _this;
+    }
+    SubMenuItem.prototype.add = function (menuItem) {
+        this.menu.add(menuItem);
+    };
+    SubMenuItem.prototype.render = function (x, y, yCaption) {
+        if (this._active) {
+            if (MainMenu.MenuInstances.indexOf(this.menu) != -1) {
+                this.menu.render(x + MainMenu.MENU_WIDTH, y);
+            }
+            if (Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
+                if (mp.keys.isDown(39)) {
+                    if (MainMenu.MenuInstances.indexOf(this.menu) == -1) {
+                        MainMenu.MenuInstances.push(this.menu);
+                        this.menu.setToItem(0);
+                    }
+                }
+                else {
+                    if (mp.keys.isDown(37)) {
+                        if (MainMenu.MenuInstances.indexOf(this.menu) != -1) {
+                            MainMenu.MenuInstances.splice(MainMenu.MenuInstances.indexOf(this.menu), 1);
+                            MainMenu.LAST_TICK_TIME = Date.now();
+                        }
+                    }
+                }
+            }
+        }
+        this.draw(x, y, yCaption);
+    };
+    SubMenuItem.prototype.draw = function (x, y, yCaption) {
+        _super.prototype.draw.call(this, x, y, yCaption);
+        CommonMenuTexture.draw("arrowright", x + MainMenu.MENU_DRAW_OFFSET_X - (0.015 * MainMenu.SCREEN_RATIO_WIDTH), y + MainMenu.MENU_DRAW_OFFSET_Y, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), (0.035 * MainMenu.SCREEN_RATIO_HEIGHT), this.textColor, 0);
+    };
+    return SubMenuItem;
+}(MenuItem));
+var MainMenu = (function (_super) {
+    __extends(MainMenu, _super);
+    function MainMenu(title, isVisible) {
+        if (title === void 0) { title = ""; }
+        if (isVisible === void 0) { isVisible = true; }
+        var _this = _super.call(this) || this;
+        _this.title = title;
+        _this.isVisible = isVisible;
+        _this.firstRender = true;
+        MainMenu.MenuInstances.push(_this);
+        return _this;
+    }
+    Object.defineProperty(MainMenu.prototype, "title", {
+        set: function (value) {
+            this._title = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MainMenu.prototype.render = function (x, y) {
+        if (this.firstRender) {
+            this.setToItem(0);
+            this.firstRender = false;
+        }
+        this.setResolutionRatio();
+        if (this.isVisible) {
+            x = Math.min(MainMenu.MENU_DRAW_OFFSET_X + x, 1 - MainMenu.MENU_DRAW_OFFSET_X);
+            y = Math.min(MainMenu.MENU_DRAW_OFFSET_Y + y, 1 - MainMenu.MENU_DRAW_OFFSET_Y);
+            CommonMenuTexture.draw("interaction_bgd", x, y, MainMenu.MENU_WIDTH, MainMenu.MAIN_MENU_HEIGHT, new Color(255, 255, 255, 255), 0);
+            drawText(this._title, [x, y - MainMenu.MENU_DRAW_OFFSET_Y * 1.4], new Color(), 1, [1, 1], true);
+            y += (MainMenu.MAIN_MENU_HEIGHT / 2);
+            if (Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
+                if (mp.keys.isDown(40)) {
+                    var menuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
+                    menuInstance.setToItem(menuInstance.currentIndexMenuItems + 1);
+                }
+                else {
+                    if (mp.keys.isDown(38)) {
+                        var menuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
+                        menuInstance.setToItem(menuInstance.currentIndexMenuItems - 1);
+                    }
+                }
+            }
+            _super.prototype.render.call(this, x, y);
+        }
+    };
+    MainMenu.prototype.open = function () {
+        this.isVisible = true;
+    };
+    MainMenu.prototype.close = function () {
+        this.isVisible = false;
+    };
+    MainMenu.prototype.setResolutionRatio = function () {
+        MainMenu.SCREEN_RATIO_WIDTH = 1024 / mp.game.graphics.getScreenActiveResolution(0, 0).x;
+        MainMenu.SCREEN_RATIO_HEIGHT = 768 / mp.game.graphics.getScreenActiveResolution(0, 0).y;
+        MainMenu.MENU_WIDTH = 0.27 * MainMenu.SCREEN_RATIO_WIDTH;
+        MainMenu.MENU_WIDTH = Math.max(MainMenu.MENU_WIDTH, getTextWidth(this._title, 1, [1, 1]) + MainMenu.MENU_WIDTH / 5);
+        MainMenu.MENU_HEIGHT = 0.04 * MainMenu.SCREEN_RATIO_HEIGHT;
+        MainMenu.MAIN_MENU_HEIGHT = MainMenu.MENU_HEIGHT * 2.5;
+        MainMenu.MENU_DRAW_OFFSET_X = MainMenu.MENU_WIDTH / 2;
+        MainMenu.MENU_DRAW_OFFSET_Y = MainMenu.MENU_HEIGHT / 2;
+        MainMenu.MENU_ARROW_DOWN_HEIGHT = MainMenu.MENU_HEIGHT / 3;
+    };
+    MainMenu.MAX_MENU_DISPLAY = 8;
+    MainMenu.CONTROL_TICK_TIME_MS = 150;
+    MainMenu.LAST_TICK_TIME = Date.now();
+    MainMenu.MenuInstances = [];
+    return MainMenu;
+}(Menu));
