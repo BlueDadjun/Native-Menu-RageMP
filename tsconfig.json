@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "sourceMap": false,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "strictNullChecks": true,
+    "outFile": "dist/NativeUI.js"
+  },
+  "include": [
+    "utils/Badge.ts",
+    "utils/Color.ts",
+    "utils/Texture.ts",
+    "utils/TexturesLib.ts",
+    "utils/Text.ts",
+
+    "events/EventMenuItem.ts",
+    "events/OnSelectItemMenuEvent.ts",
+    "events/OnClickItemMenuEvent.ts",
+    "events/OnChangeItemMenuEvent.ts",
+
+    "items/MenuItem.ts",
+    "items/TextMenuItem.ts",
+    "items/CheckboxMenuItem.ts",
+    "items/ListMenuItem.ts",
+    "items/SliderMenuItem.ts",
+
+    "Menu.ts",
+    "items/SubMenuItem.ts",
+
+    "MainMenu.ts"
+  ]
+}
