@@ -44,17 +44,19 @@ class Menu {
 	}
 
 	public setToItem(newIndex: number): void {
-		this.menuItems[this.currentIndexMenuItems].active = false;
+		if (this.menuItems.length > 0) {
+			this.menuItems[this.currentIndexMenuItems].active = false;
 
-		if (newIndex < 0) {
-			newIndex = this.menuItems.length - 1;
-		} else {
-			newIndex %= this.menuItems.length;
+			if (newIndex < 0) {
+				newIndex = this.menuItems.length - 1;
+			} else {
+				newIndex %= this.menuItems.length;
+			}
+
+			this.currentIndexMenuItems = newIndex;
+			this.menuItems[this.currentIndexMenuItems].active = true;
+
+			MainMenu.LAST_TICK_TIME = new Date().getTime();
 		}
-
-		this.currentIndexMenuItems = newIndex;
-		this.menuItems[this.currentIndexMenuItems].active = true;
-
-		MainMenu.LAST_TICK_TIME = new Date().getTime();
 	}
 }
