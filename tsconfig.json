@@ -20,6 +20,7 @@
     "events/OnSelectItemMenuEvent.ts",
     "events/OnClickItemMenuEvent.ts",
     "events/OnChangeItemMenuEvent.ts",
+    "events/EventMenu.ts",
     "items/MenuItem.ts",
     "items/TextMenuItem.ts",
     "items/CheckboxMenuItem.ts",

@@ -1,10 +1,12 @@
 class Menu {
 	private menuItems: MenuItem[];
 	private currentIndexMenuItems: number;
+	public onEventMenu: EventMenu;
 
 	public constructor() {
 		this.menuItems = [];
 		this.currentIndexMenuItems = 0;
+		this.onEventMenu = null;
 	}
 
 	public add(menuItem: MenuItem): void {

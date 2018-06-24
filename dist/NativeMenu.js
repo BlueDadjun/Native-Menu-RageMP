@@ -85,14 +85,13 @@ var MenuItem = (function () {
             var _this = this;
             this._active = value;
             if (this._active) {
-                this.onSelectEvents.forEach(function (value) {
-                    if (_this instanceof ListMenuItem) {
-                        value.trigger(_this.data[_this.dataCurrentIndex]);
-                    }
-                    else {
-                        value.trigger(_this.data);
-                    }
+                this.onSelectEvents.forEach(function (event) {
+                    event.trigger(_this instanceof ListMenuItem ? _this.data[_this.dataCurrentIndex] : _this.data);
                 });
+                var currentMenuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
+                if (currentMenuInstance.onEventMenu != null && typeof currentMenuInstance.onEventMenu.select !== "undefined") {
+                    currentMenuInstance.onEventMenu.select(this, this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
+                }
             }
         },
         enumerable: true,
@@ -124,14 +123,13 @@ var MenuItem = (function () {
         if (this._active && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
             if (mp.game.controls.isControlJustReleased(0, 201)) {
                 SOUND_SELECT.playSound();
-                this.onClickEvents.forEach(function (value) {
-                    if (_this instanceof ListMenuItem) {
-                        value.trigger(_this.data[_this.dataCurrentIndex]);
-                    }
-                    else {
-                        value.trigger(_this.data);
-                    }
+                this.onClickEvents.forEach(function (event) {
+                    event.trigger(_this instanceof ListMenuItem ? _this.data[_this.dataCurrentIndex] : _this.data);
                 });
+                var currentMenuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
+                if (currentMenuInstance.onEventMenu != null && typeof currentMenuInstance.onEventMenu.click !== "undefined") {
+                    currentMenuInstance.onEventMenu.click(this, this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
+                }
                 MainMenu.LAST_TICK_TIME = Date.now();
             }
         }
@@ -320,6 +318,7 @@ var Menu = (function () {
     function Menu() {
         this.menuItems = [];
         this.currentIndexMenuItems = 0;
+        this.onEventMenu = null;
     }
     Menu.prototype.add = function (menuItem) {
         this.menuItems.push(menuItem);

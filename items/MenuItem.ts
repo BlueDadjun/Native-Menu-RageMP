@@ -30,18 +30,18 @@ abstract class MenuItem {
 		this.onSelectEvents = [];
 	}
 
-
 	public set active(value: boolean) {
 		this._active = value;
 
 		if (this._active) {
-			this.onSelectEvents.forEach(value => {
-				if (this instanceof ListMenuItem) {
-					value.trigger(this.data[this.dataCurrentIndex]);
-				} else {
-					value.trigger(this.data);
-				}
+			this.onSelectEvents.forEach(event => {
+				event.trigger(this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
 			});
+
+			let currentMenuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
+			if (currentMenuInstance.onEventMenu != null && typeof currentMenuInstance.onEventMenu.select !== "undefined") {
+				currentMenuInstance.onEventMenu.select(this, this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
+			}
 		}
 	}
 
@@ -52,7 +52,6 @@ abstract class MenuItem {
 	protected get backgroundColor(): Color {
 		return this._active ? this.hoverBackgroundColor : this._backgroundColor;
 	}
-
 
 	public addOnClickEvent(onClickEvent: OnClickItemMenuEvent): void {
 		this.onClickEvents.push(onClickEvent);
@@ -68,13 +67,14 @@ abstract class MenuItem {
 		if (this._active && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
 			if (mp.game.controls.isControlJustReleased(0, 201)) {
 				SOUND_SELECT.playSound();
-				this.onClickEvents.forEach(value => {
-					if (this instanceof ListMenuItem) {
-						value.trigger(this.data[this.dataCurrentIndex]);
-					} else {
-						value.trigger(this.data);
-					}
+				this.onClickEvents.forEach(event => {
+					event.trigger(this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
 				});
+
+				let currentMenuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
+				if (currentMenuInstance.onEventMenu != null && typeof currentMenuInstance.onEventMenu.click !== "undefined") {
+					currentMenuInstance.onEventMenu.click(this, this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
+				}
 
 				MainMenu.LAST_TICK_TIME = Date.now();
 			}
