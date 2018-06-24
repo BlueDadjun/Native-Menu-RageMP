@@ -22,12 +22,14 @@ class SubMenuItem extends MenuItem {
 					if (MainMenu.MenuInstances.indexOf(this.menu) == -1) {
 						MainMenu.MenuInstances.push(this.menu);
 						this.menu.setToItem(0);
+						SOUND_NAV_LEFT_RIGHT.playSound();
 					}
 				} else {
 					if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_LEFT)) {
 						if (MainMenu.MenuInstances.indexOf(this.menu) != -1) {
 							MainMenu.MenuInstances.splice(MainMenu.MenuInstances.indexOf(this.menu), 1);
 							MainMenu.LAST_TICK_TIME = Date.now();
+							SOUND_BACK.playSound();
 						}
 					}
 				}

@@ -35,7 +35,7 @@ class MainMenu extends Menu {
 	public render(x: number, y: number): void {
 		if (this.isVisible) {
 			if (this.firstRender) {
-				this.setToItem(0);
+				this.setToItem(0, false);
 				this.firstRender = false;
 			}
 

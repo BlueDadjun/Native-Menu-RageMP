@@ -43,7 +43,7 @@ class Menu {
 		}
 	}
 
-	public setToItem(newIndex: number): void {
+	public setToItem(newIndex: number, withSound: boolean = true): void {
 		if (this.menuItems.length > 0) {
 			this.menuItems[this.currentIndexMenuItems].active = false;
 
@@ -51,6 +51,10 @@ class Menu {
 				newIndex = this.menuItems.length - 1;
 			} else {
 				newIndex %= this.menuItems.length;
+			}
+
+			if (withSound) {
+				SOUND_NAV_UP_DOWN.playSound();
 			}
 
 			this.currentIndexMenuItems = newIndex;

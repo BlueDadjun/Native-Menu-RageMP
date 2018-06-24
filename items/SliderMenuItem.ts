@@ -26,7 +26,7 @@ class SliderMenuItem extends MenuItem {
 
 	public render(x: number, y: number, yCaption: number): void {
 		if (this.firstRender) {
-			this.setToValue(this.data);
+			this.setToValue(this.data, false);
 			this.firstRender = false;
 		}
 
@@ -68,11 +68,15 @@ class SliderMenuItem extends MenuItem {
 		CommonMenuTexture.draw("arrowright", xOffset + (arrowWidth / 2), y + MainMenu.MENU_DRAW_OFFSET_Y, arrowWidth, (0.025 * MainMenu.SCREEN_RATIO_HEIGHT), this.textColor, 0);
 	}
 
-	private setToValue(newValue: number): void {
+	private setToValue(newValue: number, withSound: boolean = true): void {
 		if (newValue < this.min) {
 			this.data = this.max;
 		} else {
 			this.data = newValue % (this.max + this.step);
+		}
+
+		if (withSound) {
+			SOUND_NAV_LEFT_RIGHT.playSound();
 		}
 
 		MainMenu.LAST_TICK_TIME = Date.now();

@@ -67,7 +67,7 @@ abstract class MenuItem {
 
 		if (this._active && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
 			if (mp.game.controls.isControlJustReleased(0, 201)) {
-				mp.gui.chat.push(this.displayText);
+				SOUND_SELECT.playSound();
 				this.onClickEvents.forEach(value => {
 					if (this instanceof ListMenuItem) {
 						value.trigger(this.data[this.dataCurrentIndex]);

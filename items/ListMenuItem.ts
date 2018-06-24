@@ -19,11 +19,12 @@ class ListMenuItem extends MenuItem {
 	public render(x: number, y: number, yCaption: number): void {
 		if (this.data.length > 0) {
 			if (this.firstRender) {
-				this.setToItem(this.defaultIndex);
+				this.setToItem(this.defaultIndex, false);
 				this.firstRender = false;
 			}
 
 			if (this._active && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
+				let newIndex = NaN;
 				if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_RIGHT)) {
 					this.setToItem(this.dataCurrentIndex + 1);
 				} else {
@@ -56,11 +57,15 @@ class ListMenuItem extends MenuItem {
 		}
 	}
 
-	private setToItem(newIndex: number): void {
+	private setToItem(newIndex: number, withSound: boolean = true): void {
 		if (newIndex < 0) {
 			this.dataCurrentIndex = this.data.length - 1;
 		} else {
 			this.dataCurrentIndex = newIndex % this.data.length;
+		}
+
+		if (withSound) {
+			SOUND_NAV_LEFT_RIGHT.playSound();
 		}
 
 		MainMenu.LAST_TICK_TIME = Date.now();

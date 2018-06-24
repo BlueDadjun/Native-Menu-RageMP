@@ -8,11 +8,14 @@
     "outFile": "dist/NativeUI.js"
   },
   "include": [
-    "utils/Badge.ts",
+    "utils/Control.ts",
     "utils/Color.ts",
     "utils/Texture.ts",
-    "utils/TexturesLib.ts",
     "utils/Text.ts",
+    "utils/Sound.ts",
+    "data/Badge.ts",
+    "data/CommonMenuTexture.ts",
+    "data/MenuSound.ts",
     "events/EventMenuItem.ts",
     "events/OnSelectItemMenuEvent.ts",
     "events/OnClickItemMenuEvent.ts",
