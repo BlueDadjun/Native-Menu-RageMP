@@ -538,12 +538,12 @@ var MainMenu = (function (_super) {
         configurable: true
     });
     MainMenu.prototype.render = function (x, y) {
-        if (this.firstRender) {
-            this.setToItem(0);
-            this.firstRender = false;
-        }
-        this.setResolutionRatio();
         if (this.isVisible) {
+            if (this.firstRender) {
+                this.setToItem(0);
+                this.firstRender = false;
+            }
+            this.setResolutionRatio();
             x = Math.min(MainMenu.MENU_DRAW_OFFSET_X + x, 1 - MainMenu.MENU_DRAW_OFFSET_X);
             y = Math.min(MainMenu.MENU_DRAW_OFFSET_Y + y, 1 - MainMenu.MENU_DRAW_OFFSET_Y);
             CommonMenuTexture.draw("interaction_bgd", x, y, MainMenu.MENU_WIDTH, MainMenu.MAIN_MENU_HEIGHT, new Color(255, 255, 255, 255), 0);

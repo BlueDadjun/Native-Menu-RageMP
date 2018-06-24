@@ -2,8 +2,10 @@ abstract class MenuItem {
 	public displayText: string;
 	public data: any;
 
+	protected _active: boolean;
 	protected onClickEvents: OnClickItemMenuEvent[];
 	protected onSelectEvents: OnSelectItemMenuEvent[];
+
 	private readonly badge: MenuBadge;
 	private readonly caption: string;
 	private readonly _textColor: Color;
@@ -28,7 +30,6 @@ abstract class MenuItem {
 		this.onSelectEvents = [];
 	}
 
-	protected _active: boolean;
 
 	public set active(value: boolean) {
 		this._active = value;

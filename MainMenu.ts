@@ -12,6 +12,8 @@ class MainMenu extends Menu {
 	public static CONTROL_TICK_TIME_MS: number = 150;
 	public static LAST_TICK_TIME: number = Date.now();
 	public static MenuInstances: Menu[] = [];
+
+	private _title: string;
 	private isVisible: boolean;
 	private firstRender: boolean;
 
@@ -25,21 +27,19 @@ class MainMenu extends Menu {
 		MainMenu.MenuInstances.push(this);
 	}
 
-	private _title: string;
-
-	public set title(value: string) {
+	private set title(value: string) {
 		this._title = value;
 	}
 
 	public render(x: number, y: number): void {
-		if (this.firstRender) {
-			this.setToItem(0);
-			this.firstRender = false;
-		}
-
-		this.setResolutionRatio();
-
 		if (this.isVisible) {
+			if (this.firstRender) {
+				this.setToItem(0);
+				this.firstRender = false;
+			}
+
+			this.setResolutionRatio();
+
 			x = Math.min(MainMenu.MENU_DRAW_OFFSET_X + x, 1 - MainMenu.MENU_DRAW_OFFSET_X);
 			y = Math.min(MainMenu.MENU_DRAW_OFFSET_Y + y, 1 - MainMenu.MENU_DRAW_OFFSET_Y);
 
