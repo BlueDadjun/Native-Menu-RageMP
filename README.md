@@ -2,11 +2,15 @@
 ![https://i.imgur.com/T1esInV.png](https://i.imgur.com/T1esInV.png)
 ## MainMenu
 ```new MainMenu(title: string)```
+
 ### Functions
 * ```add(menuItem: MenuItem)```
 * ```render(x: number, y: number)```
 * ```open()```
 * ```close()```
+
+### Events
+* ```setEventMenu(eventMenu: EventMenu)```
 
 ## TextMenuItem
 ```new TextMenuItem(displayText: string, data: any, caption: string = "", badge: MenuBadge = NaN, textColor: Color = new Color(255, 255, 255, 240), backgroundColor: Color = new Color(0, 0, 0, 120), hoverTextColor: Color = new Color(0, 0, 0, 240), hoverBackgroundColor: Color = new Color(255, 255, 255, 170))```
@@ -38,10 +42,13 @@
 * ```addOnClickEvent(onClickEvent: OnClickItemMenuEvent)```
 * ```addOnSelectEvent(onSelectEvent: OnSelectItemMenuEvent)```
 
+## CloseMenuItem
+```new CloseMenuItem(displayText: string = "Close")```
+
 ## SubMenuItem
 ```new SliderMenuItem(displayText: string, min: number, max: number, step: number, data: number = NaN, caption: string, badge: MenuBadge, textColor: Color, backgroundColor: Color, hoverTextColor: Color, hoverBackgroundColor: Color)```
 
-### SubMenuItem
+### Functions
 * ```add(menuItem: MenuItem)```
 
 # Example
