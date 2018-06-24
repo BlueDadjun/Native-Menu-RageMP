@@ -121,7 +121,7 @@ var MenuItem = (function () {
         var _this = this;
         this.draw(x, y, yCaption);
         if (this._active && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
-            if (mp.game.controls.isControlJustReleased(0, 201)) {
+            if (mp.game.controls.isControlJustReleased(0, Control.INPUT_FRONTEND_ACCEPT)) {
                 SOUND_SELECT.playSound();
                 this.onClickEvents.forEach(function (event) {
                     event.trigger(_this instanceof ListMenuItem ? _this.data[_this.dataCurrentIndex] : _this.data);
@@ -439,11 +439,11 @@ var MainMenu = (function (_super) {
         configurable: true
     });
     MainMenu.prototype.render = function (x, y) {
-        if (this.firstRender) {
-            this.setToItem(0, false);
-            this.firstRender = false;
-        }
         if (this.isVisible) {
+            if (this.firstRender) {
+                this.setToItem(0, false);
+                this.firstRender = false;
+            }
             this.setResolutionRatio();
             if (x < MainMenu.MENU_DRAW_OFFSET_X) {
                 x += MainMenu.MENU_DRAW_OFFSET_X;

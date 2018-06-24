@@ -66,7 +66,7 @@ abstract class MenuItem {
 		this.draw(x, y, yCaption);
 
 		if (this._active && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
-			if (mp.game.controls.isControlJustReleased(0, 201)) {
+			if (mp.game.controls.isControlJustReleased(0, Control.INPUT_FRONTEND_ACCEPT)) {
 				SOUND_SELECT.playSound();
 				this.onClickEvents.forEach(event => {
 					event.trigger(this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
