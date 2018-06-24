@@ -6,6 +6,7 @@ class MainMenu extends Menu {
 	public static MAIN_MENU_HEIGHT: number;
 	public static MENU_DRAW_OFFSET_X: number;
 	public static MENU_DRAW_OFFSET_Y: number;
+	public static MAIN_MENU_HEIGHT_OFFSET_Y: number;
 	public static MENU_ARROW_DOWN_HEIGHT: number;
 
 	public static MAX_MENU_DISPLAY: number = 8;
@@ -40,12 +41,20 @@ class MainMenu extends Menu {
 
 			this.setResolutionRatio();
 
-			x = Math.min(MainMenu.MENU_DRAW_OFFSET_X + x, 1 - MainMenu.MENU_DRAW_OFFSET_X);
-			y = Math.min(MainMenu.MENU_DRAW_OFFSET_Y + y, 1 - MainMenu.MENU_DRAW_OFFSET_Y);
+			if (x < MainMenu.MENU_DRAW_OFFSET_X) {
+				x += MainMenu.MENU_DRAW_OFFSET_X;
+			}
+
+			if (y < MainMenu.MAIN_MENU_HEIGHT_OFFSET_Y) {
+				y += MainMenu.MAIN_MENU_HEIGHT;
+			}
+
+			x = Math.min(x, 1 - MainMenu.MENU_DRAW_OFFSET_X);
+			y = Math.min(y, 1 - MainMenu.MAIN_MENU_HEIGHT_OFFSET_Y);
 
 			/* set header menu */
 			CommonMenuTexture.draw("interaction_bgd", x, y, MainMenu.MENU_WIDTH, MainMenu.MAIN_MENU_HEIGHT, new Color(255, 255, 255, 255), 0);
-			drawText(this._title, [x, y - MainMenu.MENU_DRAW_OFFSET_Y * 1.4], new Color(), 1, [1, 1], true);
+			drawText(this._title, [x, y - (MainMenu.MAIN_MENU_HEIGHT_OFFSET_Y / 2)], new Color(), 1, [1, 1], true);
 			y += (MainMenu.MAIN_MENU_HEIGHT / 2);
 
 			if (Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
@@ -82,8 +91,11 @@ class MainMenu extends Menu {
 
 		MainMenu.MENU_HEIGHT = 0.04 * MainMenu.SCREEN_RATIO_HEIGHT;
 		MainMenu.MAIN_MENU_HEIGHT = MainMenu.MENU_HEIGHT * 2.5;
+
 		MainMenu.MENU_DRAW_OFFSET_X = MainMenu.MENU_WIDTH / 2;
 		MainMenu.MENU_DRAW_OFFSET_Y = MainMenu.MENU_HEIGHT / 2;
+		MainMenu.MAIN_MENU_HEIGHT_OFFSET_Y = MainMenu.MAIN_MENU_HEIGHT / 2;
+
 		MainMenu.MENU_ARROW_DOWN_HEIGHT = MainMenu.MENU_HEIGHT / 3;
 	}
 }
