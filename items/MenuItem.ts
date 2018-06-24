@@ -8,10 +8,11 @@ abstract class MenuItem {
 
 	private readonly badge: MenuBadge;
 	private readonly caption: string;
-	private readonly _textColor: Color;
-	private readonly _backgroundColor: Color;
-	private readonly hoverTextColor: Color;
-	private readonly hoverBackgroundColor: Color;
+
+	protected _textColor: Color;
+	protected _backgroundColor: Color;
+	protected hoverTextColor: Color;
+	protected hoverBackgroundColor: Color;
 
 	public constructor(displayText: string, data: any, caption: string = "", badge: MenuBadge = NaN, textColor: Color = new Color(255, 255, 255, 240), backgroundColor: Color = new Color(0, 0, 0, 120), hoverTextColor: Color = new Color(0, 0, 0, 240), hoverBackgroundColor: Color = new Color(255, 255, 255, 170)) {
 		this.displayText = displayText;
@@ -33,7 +34,7 @@ abstract class MenuItem {
 	public set active(value: boolean) {
 		this._active = value;
 
-		if (this._active) {
+		if (this._active && !(this instanceof CloseMenuItem)) {
 			this.onSelectEvents.forEach(event => {
 				event.trigger(this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
 			});
@@ -71,9 +72,11 @@ abstract class MenuItem {
 					event.trigger(this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
 				});
 
-				let currentMenuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
-				if (currentMenuInstance.onEventMenu != null && typeof currentMenuInstance.onEventMenu.click !== "undefined") {
-					currentMenuInstance.onEventMenu.click(this, this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
+				if (!(this instanceof CloseMenuItem)) {
+					let currentMenuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
+					if (currentMenuInstance.onEventMenu != null && typeof currentMenuInstance.onEventMenu.click !== "undefined") {
+						currentMenuInstance.onEventMenu.click(this, this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
+					}
 				}
 
 				MainMenu.LAST_TICK_TIME = Date.now();

@@ -26,6 +26,7 @@
     "items/CheckboxMenuItem.ts",
     "items/ListMenuItem.ts",
     "items/SliderMenuItem.ts",
+    "items/CloseMenuItem.ts",
     "Menu.ts",
     "items/SubMenuItem.ts",
     "MainMenu.ts"

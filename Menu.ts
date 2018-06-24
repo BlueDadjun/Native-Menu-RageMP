@@ -11,6 +11,14 @@ class Menu {
 
 	public add(menuItem: MenuItem): void {
 		this.menuItems.push(menuItem);
+
+		if (menuItem instanceof CloseMenuItem && this instanceof MainMenu) {
+			menuItem.addOnClickEvent({
+				trigger: (data) => {
+					this.close();
+				}
+			});
+		}
 	}
 
 	public render(x: number, y: number): void {

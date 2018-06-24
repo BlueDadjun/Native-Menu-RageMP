@@ -15,16 +15,16 @@ class MainMenu extends Menu {
 	public static MenuInstances: Menu[] = [];
 
 	private _title: string;
-	private isVisible: boolean;
 	private firstRender: boolean;
+	public isVisible: boolean;
 
 	public constructor(title: string = "", isVisible: boolean = true) {
 		super();
 
 		this.title = title;
+		this.firstRender = true;
 		this.isVisible = isVisible;
 
-		this.firstRender = true;
 		MainMenu.MenuInstances.push(this);
 	}
 
@@ -33,12 +33,12 @@ class MainMenu extends Menu {
 	}
 
 	public render(x: number, y: number): void {
-		if (this.isVisible) {
-			if (this.firstRender) {
-				this.setToItem(0, false);
-				this.firstRender = false;
-			}
+		if (this.firstRender) {
+			this.setToItem(0, false);
+			this.firstRender = false;
+		}
 
+		if (this.isVisible) {
 			this.setResolutionRatio();
 
 			if (x < MainMenu.MENU_DRAW_OFFSET_X) {
