@@ -58,11 +58,11 @@ class MainMenu extends Menu {
 			y += (MainMenu.MAIN_MENU_HEIGHT / 2);
 
 			if (Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
-				if (mp.keys.isDown(40)) {
+				if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_DOWN)) {
 					let menuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
 					menuInstance.setToItem(menuInstance.currentIndexMenuItems + 1);
 				} else {
-					if (mp.keys.isDown(38)) {
+					if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_UP)) {
 						let menuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
 						menuInstance.setToItem(menuInstance.currentIndexMenuItems - 1);
 					}

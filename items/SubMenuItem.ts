@@ -18,13 +18,13 @@ class SubMenuItem extends MenuItem {
 			}
 
 			if (Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
-				if (mp.keys.isDown(39)) {
+				if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_RIGHT)) {
 					if (MainMenu.MenuInstances.indexOf(this.menu) == -1) {
 						MainMenu.MenuInstances.push(this.menu);
 						this.menu.setToItem(0);
 					}
 				} else {
-					if (mp.keys.isDown(37)) {
+					if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_LEFT)) {
 						if (MainMenu.MenuInstances.indexOf(this.menu) != -1) {
 							MainMenu.MenuInstances.splice(MainMenu.MenuInstances.indexOf(this.menu), 1);
 							MainMenu.LAST_TICK_TIME = Date.now();

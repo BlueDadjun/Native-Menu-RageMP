@@ -66,7 +66,7 @@ abstract class MenuItem {
 		this.draw(x, y, yCaption);
 
 		if (this._active && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
-			if (mp.keys.isDown(13)) {
+			if (mp.game.controls.isControlJustReleased(0, 201)) {
 				mp.gui.chat.push(this.displayText);
 				this.onClickEvents.forEach(value => {
 					if (this instanceof ListMenuItem) {

@@ -31,10 +31,10 @@ class SliderMenuItem extends MenuItem {
 		}
 
 		if (this._active && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
-			if (mp.keys.isDown(39)) {
+			if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_RIGHT)) {
 				this.setToValue(this.data + this.step);
 			} else {
-				if (mp.keys.isDown(37)) {
+				if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_LEFT)) {
 					this.setToValue(this.data - this.step);
 				}
 			}
