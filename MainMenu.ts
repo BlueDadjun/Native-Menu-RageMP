@@ -33,12 +33,12 @@ class MainMenu extends Menu {
 	}
 
 	public render(x: number, y: number): void {
-		if (this.firstRender) {
-			this.setToItem(0, false);
-			this.firstRender = false;
-		}
-
 		if (this.isVisible) {
+			if (this.firstRender) {
+				this.setToItem(0, false);
+				this.firstRender = false;
+			}
+
 			this.setResolutionRatio();
 
 			if (x < MainMenu.MENU_DRAW_OFFSET_X) {
