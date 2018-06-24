@@ -21,6 +21,10 @@ class Menu {
 		}
 	}
 
+	public setEventMenu(eventMenu: EventMenu) {
+		this.onEventMenu = eventMenu;
+	}
+
 	public render(x: number, y: number): void {
 		this.draw(x, y);
 	}

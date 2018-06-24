@@ -84,7 +84,7 @@ var MenuItem = (function () {
         set: function (value) {
             var _this = this;
             this._active = value;
-            if (this._active) {
+            if (this._active && !(this instanceof CloseMenuItem)) {
                 this.onSelectEvents.forEach(function (event) {
                     event.trigger(_this instanceof ListMenuItem ? _this.data[_this.dataCurrentIndex] : _this.data);
                 });
@@ -126,9 +126,11 @@ var MenuItem = (function () {
                 this.onClickEvents.forEach(function (event) {
                     event.trigger(_this instanceof ListMenuItem ? _this.data[_this.dataCurrentIndex] : _this.data);
                 });
-                var currentMenuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
-                if (currentMenuInstance.onEventMenu != null && typeof currentMenuInstance.onEventMenu.click !== "undefined") {
-                    currentMenuInstance.onEventMenu.click(this, this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
+                if (!(this instanceof CloseMenuItem)) {
+                    var currentMenuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
+                    if (currentMenuInstance.onEventMenu != null && typeof currentMenuInstance.onEventMenu.click !== "undefined") {
+                        currentMenuInstance.onEventMenu.click(this, this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
+                    }
                 }
                 MainMenu.LAST_TICK_TIME = Date.now();
             }
@@ -321,7 +323,18 @@ var Menu = (function () {
         this.onEventMenu = null;
     }
     Menu.prototype.add = function (menuItem) {
+        var _this = this;
         this.menuItems.push(menuItem);
+        if (menuItem instanceof CloseMenuItem && this instanceof MainMenu) {
+            menuItem.addOnClickEvent({
+                trigger: function (data) {
+                    _this.close();
+                }
+            });
+        }
+    };
+    Menu.prototype.setEventMenu = function (eventMenu) {
+        this.onEventMenu = eventMenu;
     };
     Menu.prototype.render = function (x, y) {
         this.draw(x, y);
@@ -413,8 +426,8 @@ var MainMenu = (function (_super) {
         if (isVisible === void 0) { isVisible = true; }
         var _this = _super.call(this) || this;
         _this.title = title;
-        _this.isVisible = isVisible;
         _this.firstRender = true;
+        _this.isVisible = isVisible;
         MainMenu.MenuInstances.push(_this);
         return _this;
     }
@@ -426,11 +439,11 @@ var MainMenu = (function (_super) {
         configurable: true
     });
     MainMenu.prototype.render = function (x, y) {
+        if (this.firstRender) {
+            this.setToItem(0, false);
+            this.firstRender = false;
+        }
         if (this.isVisible) {
-            if (this.firstRender) {
-                this.setToItem(0, false);
-                this.firstRender = false;
-            }
             this.setResolutionRatio();
             if (x < MainMenu.MENU_DRAW_OFFSET_X) {
                 x += MainMenu.MENU_DRAW_OFFSET_X;
@@ -996,3 +1009,16 @@ var SOUND_SELECT = new Sound("SELECT");
 var SOUND_BACK = new Sound("BACK");
 var SOUND_NAV_LEFT_RIGHT = new Sound("NAV_LEFT_RIGHT");
 var SOUND_NAV_UP_DOWN = new Sound("NAV_UP_DOWN");
+var CloseMenuItem = (function (_super) {
+    __extends(CloseMenuItem, _super);
+    function CloseMenuItem(displayText) {
+        if (displayText === void 0) { displayText = "Close"; }
+        var _this = _super.call(this, displayText, null) || this;
+        _this._textColor = new Color(255, 255, 255, 255);
+        _this._backgroundColor = new Color(242, 67, 67, 204);
+        _this.hoverBackgroundColor = new Color(242, 67, 67, 255);
+        _this.hoverTextColor = new Color(255, 255, 255, 255);
+        return _this;
+    }
+    return CloseMenuItem;
+}(TextMenuItem));
