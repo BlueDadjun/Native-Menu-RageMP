@@ -5,7 +5,7 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "strictNullChecks": true,
-    "outFile": "dist/NativeUI.js"
+    "outFile": "dist/NativeMenu.js"
   },
   "include": [
     "utils/Control.ts",
