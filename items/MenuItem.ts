@@ -2,19 +2,19 @@ abstract class MenuItem {
 	public displayText: string;
 	public data: any;
 
-	protected _active: boolean;
+	protected _isSelect: boolean;
 	protected onClickEvents: OnClickItemMenuEvent[];
 	protected onSelectEvents: OnSelectItemMenuEvent[];
 
 	private readonly badge: MenuBadge;
 	private readonly caption: string;
 
-	protected _textColor: Color;
-	protected _backgroundColor: Color;
-	protected hoverTextColor: Color;
-	protected hoverBackgroundColor: Color;
+	private _textColor: Color;
+	private _backgroundColor: Color;
+	private _hoverTextColor: Color;
+	private _hoverBackgroundColor: Color;
 
-	public constructor(displayText: string, data: any, caption: string = "", badge: MenuBadge = NaN, textColor: Color = new Color(255, 255, 255, 240), backgroundColor: Color = new Color(0, 0, 0, 120), hoverTextColor: Color = new Color(0, 0, 0, 240), hoverBackgroundColor: Color = new Color(255, 255, 255, 170)) {
+	protected constructor(displayText: string, data: any, caption: string = "", badge: MenuBadge = NaN, textColor: Color = new Color(255, 255, 255, 240), backgroundColor: Color = new Color(0, 0, 0, 120), hoverTextColor: Color = new Color(0, 0, 0, 240), hoverBackgroundColor: Color = new Color(255, 255, 255, 170)) {
 		this.displayText = displayText;
 		this.data = data;
 
@@ -23,35 +23,28 @@ abstract class MenuItem {
 
 		this._textColor = textColor;
 		this._backgroundColor = backgroundColor;
-		this.hoverTextColor = hoverTextColor;
-		this.hoverBackgroundColor = hoverBackgroundColor;
+		this._hoverTextColor = hoverTextColor;
+		this._hoverBackgroundColor = hoverBackgroundColor;
 
-		this._active = false;
+		this._isSelect = false;
 		this.onClickEvents = [];
 		this.onSelectEvents = [];
 	}
 
-	public set active(value: boolean) {
-		this._active = value;
+	public set isSelect(value: boolean) {
+		this._isSelect = value;
 
-		if (this._active && !(this instanceof CloseMenuItem)) {
+		/* trigger hover menu */
+		if (this._isSelect && !(this instanceof CloseMenuItem)) {
 			this.onSelectEvents.forEach(event => {
 				event.trigger(this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
 			});
 
-			let currentMenuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
+			let currentMenuInstance = MenuPool.getCurrentMenu();
 			if (currentMenuInstance.onEventMenu != null && typeof currentMenuInstance.onEventMenu.select !== "undefined") {
 				currentMenuInstance.onEventMenu.select(this, this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
 			}
 		}
-	}
-
-	protected get textColor(): Color {
-		return this._active ? this.hoverTextColor : this._textColor;
-	}
-
-	protected get backgroundColor(): Color {
-		return this._active ? this.hoverBackgroundColor : this._backgroundColor;
 	}
 
 	public addOnClickEvent(onClickEvent: OnClickItemMenuEvent): void {
@@ -65,7 +58,7 @@ abstract class MenuItem {
 	public render(x: number, y: number, yCaption: number): void {
 		this.draw(x, y, yCaption);
 
-		if (this._active && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
+		if (this._isSelect && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
 			if (mp.game.controls.isControlJustReleased(0, Control.INPUT_FRONTEND_ACCEPT)) {
 				SOUND_SELECT.playSound();
 				this.onClickEvents.forEach(event => {
@@ -73,7 +66,7 @@ abstract class MenuItem {
 				});
 
 				if (!(this instanceof CloseMenuItem)) {
-					let currentMenuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
+					let currentMenuInstance = MenuPool.getCurrentMenu();
 					if (currentMenuInstance.onEventMenu != null && typeof currentMenuInstance.onEventMenu.click !== "undefined") {
 						currentMenuInstance.onEventMenu.click(this, this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
 					}
@@ -92,7 +85,7 @@ abstract class MenuItem {
 
 		/* set badge */
 		if (!isNaN(this.badge)) {
-			CommonMenuTexture.draw(MenuBadgeToSpriteName(this.badge, this._active), x - MainMenu.MENU_DRAW_OFFSET_X + (0.015 * MainMenu.SCREEN_RATIO_WIDTH), y + MainMenu.MENU_DRAW_OFFSET_Y, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), (0.035 * MainMenu.SCREEN_RATIO_HEIGHT), new Color(160, 160, 160), 0);
+			CommonMenuTexture.draw(MenuBadgeToSpriteName(this.badge, this._isSelect), x - MainMenu.MENU_DRAW_OFFSET_X + (0.015 * MainMenu.SCREEN_RATIO_WIDTH), y + MainMenu.MENU_DRAW_OFFSET_Y, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), (0.035 * MainMenu.SCREEN_RATIO_HEIGHT), new Color(160, 160, 160), 0);
 			xOffset += (0.023 * MainMenu.SCREEN_RATIO_WIDTH);
 		}
 
@@ -100,7 +93,7 @@ abstract class MenuItem {
 		drawText(this.displayText, [xOffset, y + (0.005 * MainMenu.SCREEN_RATIO_HEIGHT)], this.textColor);
 
 		/* display caption */
-		if (this._active && this.caption.length > 0) {
+		if (this._isSelect && this.caption.length > 0) {
 			let numberOfLine = Math.ceil(getTextWidth(this.caption) / MainMenu.MENU_WIDTH);
 			let textLengthPerLine = this.caption.length / numberOfLine;
 			let textureHeight = MainMenu.MENU_HEIGHT * numberOfLine;
@@ -111,5 +104,37 @@ abstract class MenuItem {
 				drawText(this.caption.substring(i * textLengthPerLine, (i + 1) * textLengthPerLine), [x - MainMenu.MENU_DRAW_OFFSET_X + (0.004 * MainMenu.SCREEN_RATIO_WIDTH), yCaption + (0.005 * MainMenu.SCREEN_RATIO_HEIGHT) + i * MainMenu.MENU_HEIGHT], this._textColor);
 			}
 		}
+	}
+
+	get hoverTextColor(): Color {
+		return this._hoverTextColor;
+	}
+
+	set hoverTextColor(value: Color) {
+		this._hoverTextColor = value;
+	}
+
+	get hoverBackgroundColor(): Color {
+		return this._hoverBackgroundColor;
+	}
+
+	set hoverBackgroundColor(value: Color) {
+		this._hoverBackgroundColor = value;
+	}
+
+	get textColor(): Color {
+		return this._isSelect ? this._hoverTextColor : this._textColor;
+	}
+
+	set textColor(value: Color) {
+		this._textColor = value;
+	}
+
+	get backgroundColor(): Color {
+		return this._isSelect ? this._hoverBackgroundColor : this._backgroundColor;
+	}
+
+	set backgroundColor(value: Color) {
+		this._backgroundColor = value;
 	}
 }

@@ -23,7 +23,7 @@ class ListMenuItem extends MenuItem {
 				this.firstRender = false;
 			}
 
-			if (this._active && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
+			if (this._isSelect && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
 				let newIndex = NaN;
 				if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_RIGHT)) {
 					this.setToItem(this.dataCurrentIndex + 1);

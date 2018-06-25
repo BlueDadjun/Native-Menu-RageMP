@@ -1,21 +1,26 @@
 class Menu {
 	private menuItems: MenuItem[];
-	private currentIndexMenuItems: number;
+	public currentIndexMenuItems: number;
 	public onEventMenu: EventMenu;
+	private _isVisible: boolean;
 
-	public constructor() {
+	public constructor(isVisible: boolean = true) {
 		this.menuItems = [];
 		this.currentIndexMenuItems = 0;
 		this.onEventMenu = null;
+
+		this._isVisible = isVisible;
+
+		MenuPool.MenuInstances.push(this);
 	}
 
 	public add(menuItem: MenuItem): void {
 		this.menuItems.push(menuItem);
 
-		if (menuItem instanceof CloseMenuItem && this instanceof MainMenu) {
+		if (menuItem instanceof CloseMenuItem) {
 			menuItem.addOnClickEvent({
-				trigger: (data) => {
-					this.close();
+				trigger: () => {
+					this.isVisible = false;
 				}
 			});
 		}
@@ -57,9 +62,25 @@ class Menu {
 		}
 	}
 
+	public get isVisible(): boolean {
+		return this._isVisible;
+	}
+
+	public set isVisible(value: boolean) {
+		this._isVisible = value;
+
+		if (value) {
+			this.setToItem(0);
+			SOUND_NAV_LEFT_RIGHT.playSound();
+		} else {
+			this.menuItems[this.currentIndexMenuItems].isSelect = false;
+			SOUND_BACK.playSound();
+		}
+	}
+
 	public setToItem(newIndex: number, withSound: boolean = true): void {
 		if (this.menuItems.length > 0) {
-			this.menuItems[this.currentIndexMenuItems].active = false;
+			this.menuItems[this.currentIndexMenuItems].isSelect = false;
 
 			if (newIndex < 0) {
 				newIndex = this.menuItems.length - 1;
@@ -72,7 +93,7 @@ class Menu {
 			}
 
 			this.currentIndexMenuItems = newIndex;
-			this.menuItems[this.currentIndexMenuItems].active = true;
+			this.menuItems[this.currentIndexMenuItems].isSelect = true;
 
 			MainMenu.LAST_TICK_TIME = new Date().getTime();
 		}

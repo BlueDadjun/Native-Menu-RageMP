@@ -4,7 +4,7 @@ class SubMenuItem extends MenuItem {
 	public constructor(displayText: string, data: any, caption: string, badge: MenuBadge, textColor: Color, backgroundColor: Color, hoverTextColor: Color, hoverBackgroundColor: Color) {
 		super(displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor);
 
-		this.menu = new Menu();
+		this.menu = new Menu(false);
 	}
 
 	public add(menuItem: MenuItem): void {
@@ -12,25 +12,16 @@ class SubMenuItem extends MenuItem {
 	}
 
 	public render(x: number, y: number, yCaption: number): void {
-		if (this._active) {
-			if (MainMenu.MenuInstances.indexOf(this.menu) != -1) {
-				this.menu.render(x + MainMenu.MENU_WIDTH, y);
-			}
+		if (this._isSelect) {
+			this.menu.render(x + MainMenu.MENU_WIDTH, y);
 
 			if (Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
 				if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_RIGHT)) {
-					if (MainMenu.MenuInstances.indexOf(this.menu) == -1) {
-						MainMenu.MenuInstances.push(this.menu);
-						this.menu.setToItem(0);
-						SOUND_NAV_LEFT_RIGHT.playSound();
-					}
+					MenuPool.displaySubMenu(this.menu);
 				} else {
 					if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_LEFT)) {
-						if (MainMenu.MenuInstances.indexOf(this.menu) != -1) {
-							MainMenu.MenuInstances.splice(MainMenu.MenuInstances.indexOf(this.menu), 1);
-							MainMenu.LAST_TICK_TIME = Date.now();
-							SOUND_BACK.playSound();
-						}
+						MenuPool.removeSubMenu(this.menu);
+						MainMenu.LAST_TICK_TIME = Date.now();
 					}
 				}
 			}

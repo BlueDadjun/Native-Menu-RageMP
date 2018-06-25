@@ -13,6 +13,7 @@
     "utils/Texture.ts",
     "utils/Text.ts",
     "utils/Sound.ts",
+    "data/MenuPool.ts",
     "data/Badge.ts",
     "data/CommonMenuTexture.ts",
     "data/MenuSound.ts",

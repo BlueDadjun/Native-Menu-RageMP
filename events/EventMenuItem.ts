@@ -1,3 +1,3 @@
 interface EventMenuItem {
-	trigger(menuData: any);
+	trigger(menuData?: any);
 }

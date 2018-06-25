@@ -12,20 +12,15 @@ class MainMenu extends Menu {
 	public static MAX_MENU_DISPLAY: number = 8;
 	public static CONTROL_TICK_TIME_MS: number = 150;
 	public static LAST_TICK_TIME: number = Date.now();
-	public static MenuInstances: Menu[] = [];
 
 	private _title: string;
 	private firstRender: boolean;
-	public isVisible: boolean;
 
 	public constructor(title: string = "", isVisible: boolean = true) {
-		super();
+		super(isVisible);
 
 		this.title = title;
 		this.firstRender = true;
-		this.isVisible = isVisible;
-
-		MainMenu.MenuInstances.push(this);
 	}
 
 	private set title(value: string) {
@@ -59,11 +54,11 @@ class MainMenu extends Menu {
 
 			if (Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
 				if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_DOWN)) {
-					let menuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
+					let menuInstance = MenuPool.getCurrentMenu();
 					menuInstance.setToItem(menuInstance.currentIndexMenuItems + 1);
 				} else {
 					if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_UP)) {
-						let menuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
+						let menuInstance = MenuPool.getCurrentMenu();
 						menuInstance.setToItem(menuInstance.currentIndexMenuItems - 1);
 					}
 				}
