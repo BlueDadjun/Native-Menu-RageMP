@@ -12,6 +12,7 @@ class SliderMenuItem extends MenuItem {
 		this.min = min;
 		this.max = max;
 		this.step = step;
+
 		if (isNaN(data)) {
 			this.data = Math.floor((this.min + this.max) / 2);
 		}
@@ -30,7 +31,7 @@ class SliderMenuItem extends MenuItem {
 			this.firstRender = false;
 		}
 
-		if (this._active && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
+		if (this._isSelect && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
 			if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_RIGHT)) {
 				this.setToValue(this.data + this.step);
 			} else {
@@ -56,7 +57,7 @@ class SliderMenuItem extends MenuItem {
 		mp.game.graphics.drawRect(xPosition, y + MainMenu.MENU_DRAW_OFFSET_Y, sliderWidth, sliderHeight, 52, 73, 94, 255);
 
 		/* draw tick */
-		let xDataPosition = xOffset - sliderWidth + (sliderWidth / (this.min + this.max) * this.data);
+		let xDataPosition = xOffset - sliderWidth + (sliderWidth / ((this.max - this.min) / this.step) * ((this.data + Math.abs(this.min)) / this.step));
 		mp.game.graphics.drawRect(xDataPosition, y + MainMenu.MENU_DRAW_OFFSET_Y, 0.004, sliderHeight * 2, this.textColor.red, this.textColor.green, this.textColor.blue, this.textColor.alpha);
 
 		/* get x arrows positions */
@@ -72,7 +73,11 @@ class SliderMenuItem extends MenuItem {
 		if (newValue < this.min) {
 			this.data = this.max;
 		} else {
-			this.data = newValue % (this.max + this.step);
+			if (newValue > this.max) {
+				this.data = this.min;
+			} else {
+				this.data = newValue;
+			}
 		}
 
 		if (withSound) {
