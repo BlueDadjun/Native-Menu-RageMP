@@ -8,493 +8,6 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var Color = (function () {
-    function Color(red, green, blue, alpha) {
-        if (red === void 0) { red = 255; }
-        if (green === void 0) { green = 255; }
-        if (blue === void 0) { blue = 255; }
-        if (alpha === void 0) { alpha = 255; }
-        this.red = red;
-        this.green = green;
-        this.blue = blue;
-        this.alpha = alpha;
-    }
-    return Color;
-}());
-var TextureDictionnary = (function () {
-    function TextureDictionnary(textureDict, textures) {
-        this.textureDictionnary = textureDict;
-        this.textures = textures;
-    }
-    TextureDictionnary.prototype.draw = function (textureName, screenX, screenY, scaleX, scaleY, color, heading) {
-        if (color === void 0) { color = new Color(255, 255, 255); }
-        if (heading === void 0) { heading = 0; }
-        if (this.textures.indexOf(textureName) !== -1) {
-            if (mp.game.graphics.hasStreamedTextureDictLoaded(this.textureDictionnary) == false) {
-                mp.game.graphics.requestStreamedTextureDict(this.textureDictionnary, true);
-            }
-            mp.game.graphics.drawSprite(this.textureDictionnary, textureName, screenX, screenY, scaleX, scaleY, heading, color.red, color.green, color.blue, color.alpha);
-        }
-    };
-    return TextureDictionnary;
-}());
-function drawText(text, position, color, font, scale, isTextCenter) {
-    if (position === void 0) { position = []; }
-    if (font === void 0) { font = 0; }
-    if (scale === void 0) { scale = [0.35, 0.35]; }
-    if (isTextCenter === void 0) { isTextCenter = false; }
-    mp.game.ui.setTextFont(font);
-    mp.game.ui.setTextScale(scale[0] * MainMenu.SCREEN_RATIO_WIDTH, scale[1] * MainMenu.SCREEN_RATIO_HEIGHT);
-    mp.game.ui.setTextColour(color.red, color.green, color.blue, color.alpha);
-    mp.game.ui.setTextCentre(isTextCenter);
-    mp.game.ui.setTextEntry("STRING");
-    mp.game.ui.addTextComponentSubstringPlayerName(text);
-    mp.game.ui.drawText(position[0], position[1]);
-}
-function getTextWidth(text, font, scale) {
-    if (font === void 0) { font = 0; }
-    if (scale === void 0) { scale = [0.35, 0.35]; }
-    mp.game.ui.setTextFont(font);
-    mp.game.ui.setTextScale(scale[0], scale[1]);
-    mp.game.ui.setTextEntryForWidth("STRING");
-    mp.game.ui.addTextComponentSubstringPlayerName(text);
-    return mp.game.ui.getTextScreenWidth(true);
-}
-var MenuItem = (function () {
-    function MenuItem(displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) {
-        if (caption === void 0) { caption = ""; }
-        if (badge === void 0) { badge = NaN; }
-        if (textColor === void 0) { textColor = new Color(255, 255, 255, 240); }
-        if (backgroundColor === void 0) { backgroundColor = new Color(0, 0, 0, 120); }
-        if (hoverTextColor === void 0) { hoverTextColor = new Color(0, 0, 0, 240); }
-        if (hoverBackgroundColor === void 0) { hoverBackgroundColor = new Color(255, 255, 255, 170); }
-        this.displayText = displayText;
-        this.data = data;
-        this.caption = caption;
-        this.badge = badge;
-        this._textColor = textColor;
-        this._backgroundColor = backgroundColor;
-        this.hoverTextColor = hoverTextColor;
-        this.hoverBackgroundColor = hoverBackgroundColor;
-        this._active = false;
-        this.onClickEvents = [];
-        this.onSelectEvents = [];
-    }
-    Object.defineProperty(MenuItem.prototype, "active", {
-        set: function (value) {
-            var _this = this;
-            this._active = value;
-            if (this._active && !(this instanceof CloseMenuItem)) {
-                this.onSelectEvents.forEach(function (event) {
-                    event.trigger(_this instanceof ListMenuItem ? _this.data[_this.dataCurrentIndex] : _this.data);
-                });
-                var currentMenuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
-                if (currentMenuInstance.onEventMenu != null && typeof currentMenuInstance.onEventMenu.select !== "undefined") {
-                    currentMenuInstance.onEventMenu.select(this, this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
-                }
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(MenuItem.prototype, "textColor", {
-        get: function () {
-            return this._active ? this.hoverTextColor : this._textColor;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(MenuItem.prototype, "backgroundColor", {
-        get: function () {
-            return this._active ? this.hoverBackgroundColor : this._backgroundColor;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    MenuItem.prototype.addOnClickEvent = function (onClickEvent) {
-        this.onClickEvents.push(onClickEvent);
-    };
-    MenuItem.prototype.addOnSelectEvent = function (onSelectEvent) {
-        this.onSelectEvents.push(onSelectEvent);
-    };
-    MenuItem.prototype.render = function (x, y, yCaption) {
-        var _this = this;
-        this.draw(x, y, yCaption);
-        if (this._active && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
-            if (mp.game.controls.isControlJustReleased(0, Control.INPUT_FRONTEND_ACCEPT)) {
-                SOUND_SELECT.playSound();
-                this.onClickEvents.forEach(function (event) {
-                    event.trigger(_this instanceof ListMenuItem ? _this.data[_this.dataCurrentIndex] : _this.data);
-                });
-                if (!(this instanceof CloseMenuItem)) {
-                    var currentMenuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
-                    if (currentMenuInstance.onEventMenu != null && typeof currentMenuInstance.onEventMenu.click !== "undefined") {
-                        currentMenuInstance.onEventMenu.click(this, this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
-                    }
-                }
-                MainMenu.LAST_TICK_TIME = Date.now();
-            }
-        }
-    };
-    MenuItem.prototype.draw = function (x, y, yCaption) {
-        mp.game.graphics.drawRect(x, y + MainMenu.MENU_DRAW_OFFSET_Y, MainMenu.MENU_WIDTH, MainMenu.MENU_HEIGHT, this.backgroundColor.red, this.backgroundColor.green, this.backgroundColor.blue, this.backgroundColor.alpha);
-        var xOffset = x - MainMenu.MENU_DRAW_OFFSET_X + (0.004 * MainMenu.SCREEN_RATIO_WIDTH);
-        if (!isNaN(this.badge)) {
-            CommonMenuTexture.draw(MenuBadgeToSpriteName(this.badge, this._active), x - MainMenu.MENU_DRAW_OFFSET_X + (0.015 * MainMenu.SCREEN_RATIO_WIDTH), y + MainMenu.MENU_DRAW_OFFSET_Y, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), (0.035 * MainMenu.SCREEN_RATIO_HEIGHT), new Color(160, 160, 160), 0);
-            xOffset += (0.023 * MainMenu.SCREEN_RATIO_WIDTH);
-        }
-        drawText(this.displayText, [xOffset, y + (0.005 * MainMenu.SCREEN_RATIO_HEIGHT)], this.textColor);
-        if (this._active && this.caption.length > 0) {
-            var numberOfLine = Math.ceil(getTextWidth(this.caption) / MainMenu.MENU_WIDTH);
-            var textLengthPerLine = this.caption.length / numberOfLine;
-            var textureHeight = MainMenu.MENU_HEIGHT * numberOfLine;
-            CommonMenuTexture.draw("gradient_nav", x, yCaption + textureHeight / 2, MainMenu.MENU_WIDTH, textureHeight, new Color(this._backgroundColor.red, this._backgroundColor.green, this._backgroundColor.blue, 220), 270);
-            for (var i = 0; i < numberOfLine; i++) {
-                drawText(this.caption.substring(i * textLengthPerLine, (i + 1) * textLengthPerLine), [x - MainMenu.MENU_DRAW_OFFSET_X + (0.004 * MainMenu.SCREEN_RATIO_WIDTH), yCaption + (0.005 * MainMenu.SCREEN_RATIO_HEIGHT) + i * MainMenu.MENU_HEIGHT], this._textColor);
-            }
-        }
-    };
-    return MenuItem;
-}());
-var TextMenuItem = (function (_super) {
-    __extends(TextMenuItem, _super);
-    function TextMenuItem() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return TextMenuItem;
-}(MenuItem));
-var CheckboxMenuItem = (function (_super) {
-    __extends(CheckboxMenuItem, _super);
-    function CheckboxMenuItem(displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) {
-        if (data === void 0) { data = false; }
-        var _this = _super.call(this, displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) || this;
-        _this.addOnClickEvent({
-            trigger: function (data) {
-                _this.data = !_this.data;
-            }
-        });
-        return _this;
-    }
-    ;
-    CheckboxMenuItem.prototype.draw = function (x, y, yCaption) {
-        _super.prototype.draw.call(this, x, y, yCaption);
-        CommonMenuTexture.draw(this.data ? "shop_box_tick" : "shop_box_blank", x + MainMenu.MENU_DRAW_OFFSET_X - (0.015 * MainMenu.SCREEN_RATIO_WIDTH), y + MainMenu.MENU_DRAW_OFFSET_Y, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), (0.035 * MainMenu.SCREEN_RATIO_HEIGHT), new Color(), 0);
-    };
-    return CheckboxMenuItem;
-}(MenuItem));
-var ListMenuItem = (function (_super) {
-    __extends(ListMenuItem, _super);
-    function ListMenuItem(displayText, data, defaultIndex, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) {
-        if (defaultIndex === void 0) { defaultIndex = 0; }
-        var _this = _super.call(this, displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) || this;
-        _this.onChangeEvents = [];
-        _this.firstRender = true;
-        _this.defaultIndex = defaultIndex;
-        return _this;
-    }
-    ListMenuItem.prototype.addOnChangeEvent = function (onChangeEvent) {
-        this.onChangeEvents.push(onChangeEvent);
-    };
-    ListMenuItem.prototype.render = function (x, y, yCaption) {
-        if (this.data.length > 0) {
-            if (this.firstRender) {
-                this.setToItem(this.defaultIndex, false);
-                this.firstRender = false;
-            }
-            if (this._active && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
-                var newIndex = NaN;
-                if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_RIGHT)) {
-                    this.setToItem(this.dataCurrentIndex + 1);
-                }
-                else {
-                    if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_LEFT)) {
-                        this.setToItem(this.dataCurrentIndex - 1);
-                    }
-                }
-            }
-        }
-        _super.prototype.render.call(this, x, y, yCaption);
-    };
-    ListMenuItem.prototype.draw = function (x, y, yCaption) {
-        _super.prototype.draw.call(this, x, y, yCaption);
-        if (this.data.length > 0) {
-            if (!isNaN(this.dataCurrentIndex) && this.data[this.dataCurrentIndex].DisplayText != null) {
-                var xRightArrowPosition = x + MainMenu.MENU_DRAW_OFFSET_X - (0.015 * MainMenu.SCREEN_RATIO_WIDTH);
-                var xLeftArrowPosition = xRightArrowPosition - getTextWidth(this.data[this.dataCurrentIndex].DisplayText) - (0.015 * MainMenu.SCREEN_RATIO_WIDTH);
-                CommonMenuTexture.draw("arrowleft", xLeftArrowPosition, y + MainMenu.MENU_DRAW_OFFSET_Y, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), (0.035 * MainMenu.SCREEN_RATIO_HEIGHT), this.textColor, 0);
-                CommonMenuTexture.draw("arrowright", xRightArrowPosition, y + MainMenu.MENU_DRAW_OFFSET_Y, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), (0.035 * MainMenu.SCREEN_RATIO_HEIGHT), this.textColor, 0);
-                drawText(this.data[this.dataCurrentIndex].DisplayText, [(xLeftArrowPosition + xRightArrowPosition) / 2, y + (0.005 * MainMenu.SCREEN_RATIO_HEIGHT)], this.textColor, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), [0.35, 0.35], true);
-            }
-        }
-    };
-    ListMenuItem.prototype.setToItem = function (newIndex, withSound) {
-        var _this = this;
-        if (withSound === void 0) { withSound = true; }
-        if (newIndex < 0) {
-            this.dataCurrentIndex = this.data.length - 1;
-        }
-        else {
-            this.dataCurrentIndex = newIndex % this.data.length;
-        }
-        if (withSound) {
-            SOUND_NAV_LEFT_RIGHT.playSound();
-        }
-        MainMenu.LAST_TICK_TIME = Date.now();
-        this.onChangeEvents.forEach(function (value) {
-            value.trigger(_this.data[_this.dataCurrentIndex]);
-        });
-    };
-    return ListMenuItem;
-}(MenuItem));
-var SliderMenuItem = (function (_super) {
-    __extends(SliderMenuItem, _super);
-    function SliderMenuItem(displayText, min, max, step, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) {
-        if (data === void 0) { data = NaN; }
-        var _this = _super.call(this, displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) || this;
-        _this.min = min;
-        _this.max = max;
-        _this.step = step;
-        if (isNaN(data)) {
-            _this.data = Math.floor((_this.min + _this.max) / 2);
-        }
-        _this.firstRender = true;
-        _this.onChangeEvents = [];
-        return _this;
-    }
-    ;
-    SliderMenuItem.prototype.addOnChangeEvent = function (onChangeEvent) {
-        this.onChangeEvents.push(onChangeEvent);
-    };
-    SliderMenuItem.prototype.render = function (x, y, yCaption) {
-        if (this.firstRender) {
-            this.setToValue(this.data, false);
-            this.firstRender = false;
-        }
-        if (this._active && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
-            if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_RIGHT)) {
-                this.setToValue(this.data + this.step);
-            }
-            else {
-                if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_LEFT)) {
-                    this.setToValue(this.data - this.step);
-                }
-            }
-        }
-        _super.prototype.render.call(this, x, y, yCaption);
-    };
-    SliderMenuItem.prototype.draw = function (x, y, yCaption) {
-        _super.prototype.draw.call(this, x, y, yCaption);
-        var xMargin = (0.015 * MainMenu.SCREEN_RATIO_WIDTH);
-        var xOffset = x + MainMenu.MENU_DRAW_OFFSET_X - xMargin;
-        var sliderWidth = MainMenu.MENU_WIDTH / 2.5;
-        var sliderHeight = MainMenu.MENU_HEIGHT / 4;
-        var xPosition = xOffset - (sliderWidth / 2);
-        mp.game.graphics.drawRect(xPosition, y + MainMenu.MENU_DRAW_OFFSET_Y, sliderWidth, sliderHeight, 52, 73, 94, 255);
-        var xDataPosition = xOffset - sliderWidth + (sliderWidth / (this.min + this.max) * this.data);
-        mp.game.graphics.drawRect(xDataPosition, y + MainMenu.MENU_DRAW_OFFSET_Y, 0.004, sliderHeight * 2, this.textColor.red, this.textColor.green, this.textColor.blue, this.textColor.alpha);
-        var arrowWidth = (0.015 * MainMenu.SCREEN_RATIO_WIDTH);
-        var xLeftArrowPosition = xOffset - sliderWidth - (arrowWidth / 2);
-        CommonMenuTexture.draw("arrowleft", xLeftArrowPosition, y + MainMenu.MENU_DRAW_OFFSET_Y, arrowWidth, (0.025 * MainMenu.SCREEN_RATIO_HEIGHT), this.textColor, 0);
-        CommonMenuTexture.draw("arrowright", xOffset + (arrowWidth / 2), y + MainMenu.MENU_DRAW_OFFSET_Y, arrowWidth, (0.025 * MainMenu.SCREEN_RATIO_HEIGHT), this.textColor, 0);
-    };
-    SliderMenuItem.prototype.setToValue = function (newValue, withSound) {
-        var _this = this;
-        if (withSound === void 0) { withSound = true; }
-        if (newValue < this.min) {
-            this.data = this.max;
-        }
-        else {
-            this.data = newValue % (this.max + this.step);
-        }
-        if (withSound) {
-            SOUND_NAV_LEFT_RIGHT.playSound();
-        }
-        MainMenu.LAST_TICK_TIME = Date.now();
-        this.onChangeEvents.forEach(function (value) {
-            value.trigger(_this.data);
-        });
-    };
-    return SliderMenuItem;
-}(MenuItem));
-var Menu = (function () {
-    function Menu() {
-        this.menuItems = [];
-        this.currentIndexMenuItems = 0;
-        this.onEventMenu = null;
-    }
-    Menu.prototype.add = function (menuItem) {
-        var _this = this;
-        this.menuItems.push(menuItem);
-        if (menuItem instanceof CloseMenuItem && this instanceof MainMenu) {
-            menuItem.addOnClickEvent({
-                trigger: function (data) {
-                    _this.close();
-                }
-            });
-        }
-    };
-    Menu.prototype.setEventMenu = function (eventMenu) {
-        this.onEventMenu = eventMenu;
-    };
-    Menu.prototype.render = function (x, y) {
-        this.draw(x, y);
-    };
-    Menu.prototype.draw = function (x, y) {
-        if (this.currentIndexMenuItems >= MainMenu.MAX_MENU_DISPLAY) {
-            CommonMenuTexture.draw("gradient_nav", x, y + MainMenu.MENU_ARROW_DOWN_HEIGHT / 2, MainMenu.MENU_WIDTH, MainMenu.MENU_ARROW_DOWN_HEIGHT, new Color(0, 0, 0, 190), 90);
-            CommonMenuTexture.draw("arrowleft", x, y + MainMenu.MENU_ARROW_DOWN_HEIGHT / 2, (0.015 * MainMenu.SCREEN_RATIO_WIDTH), (0.025 * MainMenu.SCREEN_RATIO_HEIGHT), new Color(255, 255, 255, 200), 90);
-            y += MainMenu.MENU_ARROW_DOWN_HEIGHT;
-        }
-        var i = Math.max(0, this.currentIndexMenuItems + 1 - MainMenu.MAX_MENU_DISPLAY);
-        var to = Math.min(i + MainMenu.MAX_MENU_DISPLAY, this.menuItems.length);
-        var captionYOffset = y + ((to - i) * MainMenu.MENU_HEIGHT) + (0.02 * MainMenu.SCREEN_RATIO_HEIGHT);
-        for (; i < to; i++) {
-            this.menuItems[i].render(x, y, captionYOffset);
-            y += MainMenu.MENU_HEIGHT;
-        }
-        if (this.menuItems.length > MainMenu.MAX_MENU_DISPLAY && this.currentIndexMenuItems < this.menuItems.length - 1) {
-            CommonMenuTexture.draw("gradient_nav", x, y + MainMenu.MENU_ARROW_DOWN_HEIGHT / 2, MainMenu.MENU_WIDTH, MainMenu.MENU_ARROW_DOWN_HEIGHT, new Color(0, 0, 0, 190), 270);
-            CommonMenuTexture.draw("arrowleft", x, y + MainMenu.MENU_ARROW_DOWN_HEIGHT / 2, (0.015 * MainMenu.SCREEN_RATIO_WIDTH), (0.025 * MainMenu.SCREEN_RATIO_HEIGHT), new Color(255, 255, 255, 200), 270);
-        }
-    };
-    Menu.prototype.setToItem = function (newIndex, withSound) {
-        if (withSound === void 0) { withSound = true; }
-        if (this.menuItems.length > 0) {
-            this.menuItems[this.currentIndexMenuItems].active = false;
-            if (newIndex < 0) {
-                newIndex = this.menuItems.length - 1;
-            }
-            else {
-                newIndex %= this.menuItems.length;
-            }
-            if (withSound) {
-                SOUND_NAV_UP_DOWN.playSound();
-            }
-            this.currentIndexMenuItems = newIndex;
-            this.menuItems[this.currentIndexMenuItems].active = true;
-            MainMenu.LAST_TICK_TIME = new Date().getTime();
-        }
-    };
-    return Menu;
-}());
-var SubMenuItem = (function (_super) {
-    __extends(SubMenuItem, _super);
-    function SubMenuItem(displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) {
-        var _this = _super.call(this, displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) || this;
-        _this.menu = new Menu();
-        return _this;
-    }
-    SubMenuItem.prototype.add = function (menuItem) {
-        this.menu.add(menuItem);
-    };
-    SubMenuItem.prototype.render = function (x, y, yCaption) {
-        if (this._active) {
-            if (MainMenu.MenuInstances.indexOf(this.menu) != -1) {
-                this.menu.render(x + MainMenu.MENU_WIDTH, y);
-            }
-            if (Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
-                if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_RIGHT)) {
-                    if (MainMenu.MenuInstances.indexOf(this.menu) == -1) {
-                        MainMenu.MenuInstances.push(this.menu);
-                        this.menu.setToItem(0);
-                        SOUND_NAV_LEFT_RIGHT.playSound();
-                    }
-                }
-                else {
-                    if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_LEFT)) {
-                        if (MainMenu.MenuInstances.indexOf(this.menu) != -1) {
-                            MainMenu.MenuInstances.splice(MainMenu.MenuInstances.indexOf(this.menu), 1);
-                            MainMenu.LAST_TICK_TIME = Date.now();
-                            SOUND_BACK.playSound();
-                        }
-                    }
-                }
-            }
-        }
-        this.draw(x, y, yCaption);
-    };
-    SubMenuItem.prototype.draw = function (x, y, yCaption) {
-        _super.prototype.draw.call(this, x, y, yCaption);
-        CommonMenuTexture.draw("arrowright", x + MainMenu.MENU_DRAW_OFFSET_X - (0.015 * MainMenu.SCREEN_RATIO_WIDTH), y + MainMenu.MENU_DRAW_OFFSET_Y, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), (0.035 * MainMenu.SCREEN_RATIO_HEIGHT), this.textColor, 0);
-    };
-    return SubMenuItem;
-}(MenuItem));
-var MainMenu = (function (_super) {
-    __extends(MainMenu, _super);
-    function MainMenu(title, isVisible) {
-        if (title === void 0) { title = ""; }
-        if (isVisible === void 0) { isVisible = true; }
-        var _this = _super.call(this) || this;
-        _this.title = title;
-        _this.firstRender = true;
-        _this.isVisible = isVisible;
-        MainMenu.MenuInstances.push(_this);
-        return _this;
-    }
-    Object.defineProperty(MainMenu.prototype, "title", {
-        set: function (value) {
-            this._title = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    MainMenu.prototype.render = function (x, y) {
-        if (this.isVisible) {
-            if (this.firstRender) {
-                this.setToItem(0, false);
-                this.firstRender = false;
-            }
-            this.setResolutionRatio();
-            if (x < MainMenu.MENU_DRAW_OFFSET_X) {
-                x += MainMenu.MENU_DRAW_OFFSET_X;
-            }
-            if (y < MainMenu.MAIN_MENU_HEIGHT_OFFSET_Y) {
-                y += MainMenu.MAIN_MENU_HEIGHT;
-            }
-            x = Math.min(x, 1 - MainMenu.MENU_DRAW_OFFSET_X);
-            y = Math.min(y, 1 - MainMenu.MAIN_MENU_HEIGHT_OFFSET_Y);
-            CommonMenuTexture.draw("interaction_bgd", x, y, MainMenu.MENU_WIDTH, MainMenu.MAIN_MENU_HEIGHT, new Color(255, 255, 255, 255), 0);
-            drawText(this._title, [x, y - (MainMenu.MAIN_MENU_HEIGHT_OFFSET_Y / 2)], new Color(), 1, [1, 1], true);
-            y += (MainMenu.MAIN_MENU_HEIGHT / 2);
-            if (Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
-                if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_DOWN)) {
-                    var menuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
-                    menuInstance.setToItem(menuInstance.currentIndexMenuItems + 1);
-                }
-                else {
-                    if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_UP)) {
-                        var menuInstance = MainMenu.MenuInstances[MainMenu.MenuInstances.length - 1];
-                        menuInstance.setToItem(menuInstance.currentIndexMenuItems - 1);
-                    }
-                }
-            }
-            _super.prototype.render.call(this, x, y);
-        }
-    };
-    MainMenu.prototype.open = function () {
-        this.isVisible = true;
-    };
-    MainMenu.prototype.close = function () {
-        this.isVisible = false;
-    };
-    MainMenu.prototype.setResolutionRatio = function () {
-        MainMenu.SCREEN_RATIO_WIDTH = 1024 / mp.game.graphics.getScreenActiveResolution(0, 0).x;
-        MainMenu.SCREEN_RATIO_HEIGHT = 768 / mp.game.graphics.getScreenActiveResolution(0, 0).y;
-        MainMenu.MENU_WIDTH = 0.27 * MainMenu.SCREEN_RATIO_WIDTH;
-        MainMenu.MENU_WIDTH = Math.max(MainMenu.MENU_WIDTH, getTextWidth(this._title, 1, [1, 1]) + MainMenu.MENU_WIDTH / 5);
-        MainMenu.MENU_HEIGHT = 0.04 * MainMenu.SCREEN_RATIO_HEIGHT;
-        MainMenu.MAIN_MENU_HEIGHT = MainMenu.MENU_HEIGHT * 2.5;
-        MainMenu.MENU_DRAW_OFFSET_X = MainMenu.MENU_WIDTH / 2;
-        MainMenu.MENU_DRAW_OFFSET_Y = MainMenu.MENU_HEIGHT / 2;
-        MainMenu.MAIN_MENU_HEIGHT_OFFSET_Y = MainMenu.MAIN_MENU_HEIGHT / 2;
-        MainMenu.MENU_ARROW_DOWN_HEIGHT = MainMenu.MENU_HEIGHT / 3;
-    };
-    MainMenu.MAX_MENU_DISPLAY = 8;
-    MainMenu.CONTROL_TICK_TIME_MS = 150;
-    MainMenu.LAST_TICK_TIME = Date.now();
-    MainMenu.MenuInstances = [];
-    return MainMenu;
-}(Menu));
 var Control;
 (function (Control) {
     Control[Control["INPUT_NEXT_CAMERA"] = 0] = "INPUT_NEXT_CAMERA";
@@ -858,69 +371,77 @@ var Control;
     Control[Control["UNDEFINED_INPUT"] = -1] = "UNDEFINED_INPUT";
 })(Control || (Control = {}));
 ;
-var CommonMenuTexture = new TextureDictionnary("commonmenu", [
-    "arrowleft",
-    "arrowright",
-    "bettingbox_centre",
-    "bettingbox_left",
-    "bettingbox_right",
-    "common_medal",
-    "gradient_bgd",
-    "gradient_nav",
-    "header_gradient_script",
-    "interaction_bgd",
-    "medal_bronze",
-    "medal_gold",
-    "medal_silver",
-    "mp_alerttriangle",
-    "mp_hostcrown",
-    "mp_medal_bronze",
-    "mp_medal_gold",
-    "mp_medal_silver",
-    "mp_specitem_cash",
-    "mp_specitem_coke",
-    "mp_specitem_heroin",
-    "mp_specitem_meth",
-    "mp_specitem_weed",
-    "shop_ammo_icon_a",
-    "shop_ammo_icon_b",
-    "shop_armour_icon_a",
-    "shop_armour_icon_b",
-    "shop_arrows_upanddown",
-    "shop_barber_icon_a",
-    "shop_barber_icon_b",
-    "shop_box_blank",
-    "shop_box_blankb",
-    "shop_box_cross",
-    "shop_box_crossb",
-    "shop_box_tick",
-    "shop_box_tickb",
-    "shop_clothing_icon_a",
-    "shop_clothing_icon_b",
-    "shop_franklin_icon_a",
-    "shop_franklin_icon_b",
-    "shop_garage_bike_icon_a",
-    "shop_garage_bike_icon_b",
-    "shop_garage_icon_a",
-    "shop_garage_icon_b",
-    "shop_gunclub_icon_a",
-    "shop_gunclub_icon_b",
-    "shop_health_icon_a",
-    "shop_health_icon_b",
-    "shop_lock",
-    "shop_makeup_icon_a",
-    "shop_makeup_icon_b",
-    "shop_mask_icon_a",
-    "shop_mask_icon_b",
-    "shop_michael_icon_a",
-    "shop_michael_icon_b",
-    "shop_new_star",
-    "shop_tattoos_icon_a",
-    "shop_tattoos_icon_b",
-    "shop_tick_icon",
-    "shop_trevor_icon_a",
-    "shop_trevor_icon_b"
-]);
+var Color = (function () {
+    function Color(red, green, blue, alpha) {
+        if (red === void 0) { red = 255; }
+        if (green === void 0) { green = 255; }
+        if (blue === void 0) { blue = 255; }
+        if (alpha === void 0) { alpha = 255; }
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
+        this.alpha = alpha;
+    }
+    return Color;
+}());
+var TextureDictionnary = (function () {
+    function TextureDictionnary(textureDict, textures) {
+        this.textureDictionnary = textureDict;
+        this.textures = textures;
+    }
+    TextureDictionnary.prototype.draw = function (textureName, screenX, screenY, scaleX, scaleY, color, heading) {
+        if (color === void 0) { color = new Color(255, 255, 255); }
+        if (heading === void 0) { heading = 0; }
+        if (this.textures.indexOf(textureName) !== -1) {
+            if (mp.game.graphics.hasStreamedTextureDictLoaded(this.textureDictionnary) == false) {
+                mp.game.graphics.requestStreamedTextureDict(this.textureDictionnary, true);
+            }
+            mp.game.graphics.drawSprite(this.textureDictionnary, textureName, screenX, screenY, scaleX, scaleY, heading, color.red, color.green, color.blue, color.alpha);
+        }
+    };
+    return TextureDictionnary;
+}());
+function drawText(text, position, color, font, scale, isTextCenter) {
+    if (position === void 0) { position = []; }
+    if (font === void 0) { font = 0; }
+    if (scale === void 0) { scale = [0.35, 0.35]; }
+    if (isTextCenter === void 0) { isTextCenter = false; }
+    mp.game.ui.setTextFont(font);
+    mp.game.ui.setTextScale(scale[0] * MainMenu.SCREEN_RATIO_WIDTH, scale[1] * MainMenu.SCREEN_RATIO_HEIGHT);
+    mp.game.ui.setTextColour(color.red, color.green, color.blue, color.alpha);
+    mp.game.ui.setTextCentre(isTextCenter);
+    mp.game.ui.setTextEntry("STRING");
+    mp.game.ui.addTextComponentSubstringPlayerName(text);
+    mp.game.ui.drawText(position[0], position[1]);
+}
+function getTextWidth(text, font, scale) {
+    if (font === void 0) { font = 0; }
+    if (scale === void 0) { scale = [0.35, 0.35]; }
+    mp.game.ui.setTextFont(font);
+    mp.game.ui.setTextScale(scale[0], scale[1]);
+    mp.game.ui.setTextEntryForWidth("STRING");
+    mp.game.ui.addTextComponentSubstringPlayerName(text);
+    return mp.game.ui.getTextScreenWidth(true);
+}
+var Sound = (function () {
+    function Sound(audioName, audioRef, soundId, p3, p4, p5) {
+        if (audioRef === void 0) { audioRef = "HUD_FRONTEND_DEFAULT_SOUNDSET"; }
+        if (soundId === void 0) { soundId = -1; }
+        if (p3 === void 0) { p3 = false; }
+        if (p4 === void 0) { p4 = 0; }
+        if (p5 === void 0) { p5 = true; }
+        this.soundId = soundId;
+        this.audioName = audioName;
+        this.audioRef = audioRef;
+        this.p3 = p3;
+        this.p4 = p4;
+        this.p5 = p5;
+    }
+    Sound.prototype.playSound = function () {
+        mp.game.audio.playSound(this.soundId, this.audioName, this.audioRef, this.p3, this.p4, this.p5);
+    };
+    return Sound;
+}());
 var MenuBadge;
 (function (MenuBadge) {
     MenuBadge[MenuBadge["MEDAL_BRONZE"] = 0] = "MEDAL_BRONZE";
@@ -986,29 +507,360 @@ function MenuBadgeToSpriteName(badge, isHover) {
             return result;
     }
 }
-var Sound = (function () {
-    function Sound(audioName, audioRef, soundId, p3, p4, p5) {
-        if (audioRef === void 0) { audioRef = "HUD_FRONTEND_DEFAULT_SOUNDSET"; }
-        if (soundId === void 0) { soundId = -1; }
-        if (p3 === void 0) { p3 = false; }
-        if (p4 === void 0) { p4 = 0; }
-        if (p5 === void 0) { p5 = true; }
-        this.soundId = soundId;
-        this.audioName = audioName;
-        this.audioRef = audioRef;
-        this.p3 = p3;
-        this.p4 = p4;
-        this.p5 = p5;
-    }
-    Sound.prototype.playSound = function () {
-        mp.game.audio.playSound(this.soundId, this.audioName, this.audioRef, this.p3, this.p4, this.p5);
-    };
-    return Sound;
-}());
+var CommonMenuTexture = new TextureDictionnary("commonmenu", [
+    "arrowleft",
+    "arrowright",
+    "bettingbox_centre",
+    "bettingbox_left",
+    "bettingbox_right",
+    "common_medal",
+    "gradient_bgd",
+    "gradient_nav",
+    "header_gradient_script",
+    "interaction_bgd",
+    "medal_bronze",
+    "medal_gold",
+    "medal_silver",
+    "mp_alerttriangle",
+    "mp_hostcrown",
+    "mp_medal_bronze",
+    "mp_medal_gold",
+    "mp_medal_silver",
+    "mp_specitem_cash",
+    "mp_specitem_coke",
+    "mp_specitem_heroin",
+    "mp_specitem_meth",
+    "mp_specitem_weed",
+    "shop_ammo_icon_a",
+    "shop_ammo_icon_b",
+    "shop_armour_icon_a",
+    "shop_armour_icon_b",
+    "shop_arrows_upanddown",
+    "shop_barber_icon_a",
+    "shop_barber_icon_b",
+    "shop_box_blank",
+    "shop_box_blankb",
+    "shop_box_cross",
+    "shop_box_crossb",
+    "shop_box_tick",
+    "shop_box_tickb",
+    "shop_clothing_icon_a",
+    "shop_clothing_icon_b",
+    "shop_franklin_icon_a",
+    "shop_franklin_icon_b",
+    "shop_garage_bike_icon_a",
+    "shop_garage_bike_icon_b",
+    "shop_garage_icon_a",
+    "shop_garage_icon_b",
+    "shop_gunclub_icon_a",
+    "shop_gunclub_icon_b",
+    "shop_health_icon_a",
+    "shop_health_icon_b",
+    "shop_lock",
+    "shop_makeup_icon_a",
+    "shop_makeup_icon_b",
+    "shop_mask_icon_a",
+    "shop_mask_icon_b",
+    "shop_michael_icon_a",
+    "shop_michael_icon_b",
+    "shop_new_star",
+    "shop_tattoos_icon_a",
+    "shop_tattoos_icon_b",
+    "shop_tick_icon",
+    "shop_trevor_icon_a",
+    "shop_trevor_icon_b"
+]);
 var SOUND_SELECT = new Sound("SELECT");
 var SOUND_BACK = new Sound("BACK");
 var SOUND_NAV_LEFT_RIGHT = new Sound("NAV_LEFT_RIGHT");
 var SOUND_NAV_UP_DOWN = new Sound("NAV_UP_DOWN");
+var MenuItem = (function () {
+    function MenuItem(displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) {
+        if (caption === void 0) { caption = ""; }
+        if (badge === void 0) { badge = NaN; }
+        if (textColor === void 0) { textColor = new Color(255, 255, 255, 240); }
+        if (backgroundColor === void 0) { backgroundColor = new Color(0, 0, 0, 120); }
+        if (hoverTextColor === void 0) { hoverTextColor = new Color(0, 0, 0, 240); }
+        if (hoverBackgroundColor === void 0) { hoverBackgroundColor = new Color(255, 255, 255, 170); }
+        this.displayText = displayText;
+        this.data = data;
+        this.caption = caption;
+        this.badge = badge;
+        this._textColor = textColor;
+        this._backgroundColor = backgroundColor;
+        this._hoverTextColor = hoverTextColor;
+        this._hoverBackgroundColor = hoverBackgroundColor;
+        this._isSelect = false;
+        this.onClickEvents = [];
+        this.onSelectEvents = [];
+    }
+    Object.defineProperty(MenuItem.prototype, "isSelect", {
+        set: function (value) {
+            var _this = this;
+            this._isSelect = value;
+            if (this._isSelect && !(this instanceof CloseMenuItem)) {
+                this.onSelectEvents.forEach(function (event) {
+                    event.trigger(_this instanceof ListMenuItem ? _this.data[_this.dataCurrentIndex] : _this.data);
+                });
+                var currentMenuInstance = MenuPool.getCurrentMenu();
+                if (currentMenuInstance.onEventMenu != null && typeof currentMenuInstance.onEventMenu.select !== "undefined") {
+                    currentMenuInstance.onEventMenu.select(this, this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
+                }
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MenuItem.prototype.addOnClickEvent = function (onClickEvent) {
+        this.onClickEvents.push(onClickEvent);
+    };
+    MenuItem.prototype.addOnSelectEvent = function (onSelectEvent) {
+        this.onSelectEvents.push(onSelectEvent);
+    };
+    MenuItem.prototype.render = function (x, y, yCaption) {
+        var _this = this;
+        this.draw(x, y, yCaption);
+        if (this._isSelect && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
+            if (mp.game.controls.isControlJustReleased(0, Control.INPUT_FRONTEND_ACCEPT)) {
+                SOUND_SELECT.playSound();
+                this.onClickEvents.forEach(function (event) {
+                    event.trigger(_this instanceof ListMenuItem ? _this.data[_this.dataCurrentIndex] : _this.data);
+                });
+                if (!(this instanceof CloseMenuItem)) {
+                    var currentMenuInstance = MenuPool.getCurrentMenu();
+                    if (currentMenuInstance.onEventMenu != null && typeof currentMenuInstance.onEventMenu.click !== "undefined") {
+                        currentMenuInstance.onEventMenu.click(this, this instanceof ListMenuItem ? this.data[this.dataCurrentIndex] : this.data);
+                    }
+                }
+                MainMenu.LAST_TICK_TIME = Date.now();
+            }
+        }
+    };
+    MenuItem.prototype.draw = function (x, y, yCaption) {
+        mp.game.graphics.drawRect(x, y + MainMenu.MENU_DRAW_OFFSET_Y, MainMenu.MENU_WIDTH, MainMenu.MENU_HEIGHT, this.backgroundColor.red, this.backgroundColor.green, this.backgroundColor.blue, this.backgroundColor.alpha);
+        var xOffset = x - MainMenu.MENU_DRAW_OFFSET_X + (0.004 * MainMenu.SCREEN_RATIO_WIDTH);
+        if (!isNaN(this.badge)) {
+            CommonMenuTexture.draw(MenuBadgeToSpriteName(this.badge, this._isSelect), x - MainMenu.MENU_DRAW_OFFSET_X + (0.015 * MainMenu.SCREEN_RATIO_WIDTH), y + MainMenu.MENU_DRAW_OFFSET_Y, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), (0.035 * MainMenu.SCREEN_RATIO_HEIGHT), new Color(160, 160, 160), 0);
+            xOffset += (0.023 * MainMenu.SCREEN_RATIO_WIDTH);
+        }
+        drawText(this.displayText, [xOffset, y + (0.005 * MainMenu.SCREEN_RATIO_HEIGHT)], this.textColor);
+        if (this._isSelect && this.caption.length > 0) {
+            var numberOfLine = Math.ceil(getTextWidth(this.caption) / MainMenu.MENU_WIDTH);
+            var textLengthPerLine = this.caption.length / numberOfLine;
+            var textureHeight = MainMenu.MENU_HEIGHT * numberOfLine;
+            CommonMenuTexture.draw("gradient_nav", x, yCaption + textureHeight / 2, MainMenu.MENU_WIDTH, textureHeight, new Color(this._backgroundColor.red, this._backgroundColor.green, this._backgroundColor.blue, 220), 270);
+            for (var i = 0; i < numberOfLine; i++) {
+                drawText(this.caption.substring(i * textLengthPerLine, (i + 1) * textLengthPerLine), [x - MainMenu.MENU_DRAW_OFFSET_X + (0.004 * MainMenu.SCREEN_RATIO_WIDTH), yCaption + (0.005 * MainMenu.SCREEN_RATIO_HEIGHT) + i * MainMenu.MENU_HEIGHT], this._textColor);
+            }
+        }
+    };
+    Object.defineProperty(MenuItem.prototype, "hoverTextColor", {
+        get: function () {
+            return this._hoverTextColor;
+        },
+        set: function (value) {
+            this._hoverTextColor = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MenuItem.prototype, "hoverBackgroundColor", {
+        get: function () {
+            return this._hoverBackgroundColor;
+        },
+        set: function (value) {
+            this._hoverBackgroundColor = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MenuItem.prototype, "textColor", {
+        get: function () {
+            return this._isSelect ? this._hoverTextColor : this._textColor;
+        },
+        set: function (value) {
+            this._textColor = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MenuItem.prototype, "backgroundColor", {
+        get: function () {
+            return this._isSelect ? this._hoverBackgroundColor : this._backgroundColor;
+        },
+        set: function (value) {
+            this._backgroundColor = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return MenuItem;
+}());
+var TextMenuItem = (function (_super) {
+    __extends(TextMenuItem, _super);
+    function TextMenuItem() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return TextMenuItem;
+}(MenuItem));
+var CheckboxMenuItem = (function (_super) {
+    __extends(CheckboxMenuItem, _super);
+    function CheckboxMenuItem(displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) {
+        if (data === void 0) { data = false; }
+        var _this = _super.call(this, displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) || this;
+        _this.addOnClickEvent({
+            trigger: function (data) {
+                _this.data = !_this.data;
+            }
+        });
+        return _this;
+    }
+    ;
+    CheckboxMenuItem.prototype.draw = function (x, y, yCaption) {
+        _super.prototype.draw.call(this, x, y, yCaption);
+        CommonMenuTexture.draw(this.data ? "shop_box_tick" : "shop_box_blank", x + MainMenu.MENU_DRAW_OFFSET_X - (0.015 * MainMenu.SCREEN_RATIO_WIDTH), y + MainMenu.MENU_DRAW_OFFSET_Y, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), (0.035 * MainMenu.SCREEN_RATIO_HEIGHT), new Color(), 0);
+    };
+    return CheckboxMenuItem;
+}(MenuItem));
+var ListMenuItem = (function (_super) {
+    __extends(ListMenuItem, _super);
+    function ListMenuItem(displayText, data, defaultIndex, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) {
+        if (defaultIndex === void 0) { defaultIndex = 0; }
+        var _this = _super.call(this, displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) || this;
+        _this.onChangeEvents = [];
+        _this.firstRender = true;
+        _this.defaultIndex = defaultIndex;
+        return _this;
+    }
+    ListMenuItem.prototype.addOnChangeEvent = function (onChangeEvent) {
+        this.onChangeEvents.push(onChangeEvent);
+    };
+    ListMenuItem.prototype.render = function (x, y, yCaption) {
+        if (this.data.length > 0) {
+            if (this.firstRender) {
+                this.setToItem(this.defaultIndex, false);
+                this.firstRender = false;
+            }
+            if (this._isSelect && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
+                var newIndex = NaN;
+                if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_RIGHT)) {
+                    this.setToItem(this.dataCurrentIndex + 1);
+                }
+                else {
+                    if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_LEFT)) {
+                        this.setToItem(this.dataCurrentIndex - 1);
+                    }
+                }
+            }
+        }
+        _super.prototype.render.call(this, x, y, yCaption);
+    };
+    ListMenuItem.prototype.draw = function (x, y, yCaption) {
+        _super.prototype.draw.call(this, x, y, yCaption);
+        if (this.data.length > 0) {
+            if (!isNaN(this.dataCurrentIndex) && this.data[this.dataCurrentIndex].DisplayText != null) {
+                var xRightArrowPosition = x + MainMenu.MENU_DRAW_OFFSET_X - (0.015 * MainMenu.SCREEN_RATIO_WIDTH);
+                var xLeftArrowPosition = xRightArrowPosition - getTextWidth(this.data[this.dataCurrentIndex].DisplayText) - (0.015 * MainMenu.SCREEN_RATIO_WIDTH);
+                CommonMenuTexture.draw("arrowleft", xLeftArrowPosition, y + MainMenu.MENU_DRAW_OFFSET_Y, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), (0.035 * MainMenu.SCREEN_RATIO_HEIGHT), this.textColor, 0);
+                CommonMenuTexture.draw("arrowright", xRightArrowPosition, y + MainMenu.MENU_DRAW_OFFSET_Y, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), (0.035 * MainMenu.SCREEN_RATIO_HEIGHT), this.textColor, 0);
+                drawText(this.data[this.dataCurrentIndex].DisplayText, [(xLeftArrowPosition + xRightArrowPosition) / 2, y + (0.005 * MainMenu.SCREEN_RATIO_HEIGHT)], this.textColor, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), [0.35, 0.35], true);
+            }
+        }
+    };
+    ListMenuItem.prototype.setToItem = function (newIndex, withSound) {
+        var _this = this;
+        if (withSound === void 0) { withSound = true; }
+        if (newIndex < 0) {
+            this.dataCurrentIndex = this.data.length - 1;
+        }
+        else {
+            this.dataCurrentIndex = newIndex % this.data.length;
+        }
+        if (withSound) {
+            SOUND_NAV_LEFT_RIGHT.playSound();
+        }
+        MainMenu.LAST_TICK_TIME = Date.now();
+        this.onChangeEvents.forEach(function (value) {
+            value.trigger(_this.data[_this.dataCurrentIndex]);
+        });
+    };
+    return ListMenuItem;
+}(MenuItem));
+var SliderMenuItem = (function (_super) {
+    __extends(SliderMenuItem, _super);
+    function SliderMenuItem(displayText, min, max, step, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) {
+        if (data === void 0) { data = NaN; }
+        var _this = _super.call(this, displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) || this;
+        _this.min = min;
+        _this.max = max;
+        _this.step = step;
+        if (isNaN(data)) {
+            _this.data = Math.floor((_this.min + _this.max) / 2);
+        }
+        _this.firstRender = true;
+        _this.onChangeEvents = [];
+        return _this;
+    }
+    ;
+    SliderMenuItem.prototype.addOnChangeEvent = function (onChangeEvent) {
+        this.onChangeEvents.push(onChangeEvent);
+    };
+    SliderMenuItem.prototype.render = function (x, y, yCaption) {
+        if (this.firstRender) {
+            this.setToValue(this.data, false);
+            this.firstRender = false;
+        }
+        if (this._isSelect && Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
+            if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_RIGHT)) {
+                this.setToValue(this.data + this.step);
+            }
+            else {
+                if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_LEFT)) {
+                    this.setToValue(this.data - this.step);
+                }
+            }
+        }
+        _super.prototype.render.call(this, x, y, yCaption);
+    };
+    SliderMenuItem.prototype.draw = function (x, y, yCaption) {
+        _super.prototype.draw.call(this, x, y, yCaption);
+        var xMargin = (0.015 * MainMenu.SCREEN_RATIO_WIDTH);
+        var xOffset = x + MainMenu.MENU_DRAW_OFFSET_X - xMargin;
+        var sliderWidth = MainMenu.MENU_WIDTH / 2.5;
+        var sliderHeight = MainMenu.MENU_HEIGHT / 4;
+        var xPosition = xOffset - (sliderWidth / 2);
+        mp.game.graphics.drawRect(xPosition, y + MainMenu.MENU_DRAW_OFFSET_Y, sliderWidth, sliderHeight, 52, 73, 94, 255);
+        var xDataPosition = xOffset - sliderWidth + (sliderWidth / ((this.max - this.min) / this.step) * ((this.data + Math.abs(this.min)) / this.step));
+        mp.game.graphics.drawRect(xDataPosition, y + MainMenu.MENU_DRAW_OFFSET_Y, 0.004, sliderHeight * 2, this.textColor.red, this.textColor.green, this.textColor.blue, this.textColor.alpha);
+        var arrowWidth = (0.015 * MainMenu.SCREEN_RATIO_WIDTH);
+        var xLeftArrowPosition = xOffset - sliderWidth - (arrowWidth / 2);
+        CommonMenuTexture.draw("arrowleft", xLeftArrowPosition, y + MainMenu.MENU_DRAW_OFFSET_Y, arrowWidth, (0.025 * MainMenu.SCREEN_RATIO_HEIGHT), this.textColor, 0);
+        CommonMenuTexture.draw("arrowright", xOffset + (arrowWidth / 2), y + MainMenu.MENU_DRAW_OFFSET_Y, arrowWidth, (0.025 * MainMenu.SCREEN_RATIO_HEIGHT), this.textColor, 0);
+    };
+    SliderMenuItem.prototype.setToValue = function (newValue, withSound) {
+        var _this = this;
+        if (withSound === void 0) { withSound = true; }
+        if (newValue < this.min) {
+            this.data = this.max;
+        }
+        else {
+            if (newValue > this.max) {
+                this.data = this.min;
+            }
+            else {
+                this.data = newValue;
+            }
+        }
+        if (withSound) {
+            SOUND_NAV_LEFT_RIGHT.playSound();
+        }
+        MainMenu.LAST_TICK_TIME = Date.now();
+        this.onChangeEvents.forEach(function (value) {
+            value.trigger(_this.data);
+        });
+    };
+    return SliderMenuItem;
+}(MenuItem));
 var CloseMenuItem = (function (_super) {
     __extends(CloseMenuItem, _super);
     function CloseMenuItem(displayText) {
@@ -1022,3 +874,213 @@ var CloseMenuItem = (function (_super) {
     }
     return CloseMenuItem;
 }(TextMenuItem));
+var Menu = (function () {
+    function Menu(isVisible) {
+        if (isVisible === void 0) { isVisible = true; }
+        this.menuItems = [];
+        this.currentIndexMenuItems = 0;
+        this.onEventMenu = null;
+        this._isVisible = isVisible;
+        MenuPool.MenuInstances.push(this);
+    }
+    Menu.prototype.add = function (menuItem) {
+        var _this = this;
+        this.menuItems.push(menuItem);
+        if (menuItem instanceof CloseMenuItem) {
+            menuItem.addOnClickEvent({
+                trigger: function () {
+                    _this.isVisible = false;
+                }
+            });
+        }
+    };
+    Menu.prototype.setEventMenu = function (eventMenu) {
+        this.onEventMenu = eventMenu;
+    };
+    Menu.prototype.render = function (x, y) {
+        this.draw(x, y);
+    };
+    Menu.prototype.draw = function (x, y) {
+        if (this.currentIndexMenuItems >= MainMenu.MAX_MENU_DISPLAY) {
+            CommonMenuTexture.draw("gradient_nav", x, y + MainMenu.MENU_ARROW_DOWN_HEIGHT / 2, MainMenu.MENU_WIDTH, MainMenu.MENU_ARROW_DOWN_HEIGHT, new Color(0, 0, 0, 190), 90);
+            CommonMenuTexture.draw("arrowleft", x, y + MainMenu.MENU_ARROW_DOWN_HEIGHT / 2, (0.015 * MainMenu.SCREEN_RATIO_WIDTH), (0.025 * MainMenu.SCREEN_RATIO_HEIGHT), new Color(255, 255, 255, 200), 90);
+            y += MainMenu.MENU_ARROW_DOWN_HEIGHT;
+        }
+        var i = Math.max(0, this.currentIndexMenuItems + 1 - MainMenu.MAX_MENU_DISPLAY);
+        var to = Math.min(i + MainMenu.MAX_MENU_DISPLAY, this.menuItems.length);
+        var captionYOffset = y + ((to - i) * MainMenu.MENU_HEIGHT) + (0.02 * MainMenu.SCREEN_RATIO_HEIGHT);
+        for (; i < to; i++) {
+            this.menuItems[i].render(x, y, captionYOffset);
+            y += MainMenu.MENU_HEIGHT;
+        }
+        if (this.menuItems.length > MainMenu.MAX_MENU_DISPLAY && this.currentIndexMenuItems < this.menuItems.length - 1) {
+            CommonMenuTexture.draw("gradient_nav", x, y + MainMenu.MENU_ARROW_DOWN_HEIGHT / 2, MainMenu.MENU_WIDTH, MainMenu.MENU_ARROW_DOWN_HEIGHT, new Color(0, 0, 0, 190), 270);
+            CommonMenuTexture.draw("arrowleft", x, y + MainMenu.MENU_ARROW_DOWN_HEIGHT / 2, (0.015 * MainMenu.SCREEN_RATIO_WIDTH), (0.025 * MainMenu.SCREEN_RATIO_HEIGHT), new Color(255, 255, 255, 200), 270);
+        }
+    };
+    Object.defineProperty(Menu.prototype, "isVisible", {
+        get: function () {
+            return this._isVisible;
+        },
+        set: function (value) {
+            this._isVisible = value;
+            if (value) {
+                this.setToItem(0);
+                SOUND_NAV_LEFT_RIGHT.playSound();
+            }
+            else {
+                this.menuItems[this.currentIndexMenuItems].isSelect = false;
+                SOUND_BACK.playSound();
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Menu.prototype.setToItem = function (newIndex, withSound) {
+        if (withSound === void 0) { withSound = true; }
+        if (this.menuItems.length > 0) {
+            this.menuItems[this.currentIndexMenuItems].isSelect = false;
+            if (newIndex < 0) {
+                newIndex = this.menuItems.length - 1;
+            }
+            else {
+                newIndex %= this.menuItems.length;
+            }
+            if (withSound) {
+                SOUND_NAV_UP_DOWN.playSound();
+            }
+            this.currentIndexMenuItems = newIndex;
+            this.menuItems[this.currentIndexMenuItems].isSelect = true;
+            MainMenu.LAST_TICK_TIME = new Date().getTime();
+        }
+    };
+    return Menu;
+}());
+var SubMenuItem = (function (_super) {
+    __extends(SubMenuItem, _super);
+    function SubMenuItem(displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) {
+        var _this = _super.call(this, displayText, data, caption, badge, textColor, backgroundColor, hoverTextColor, hoverBackgroundColor) || this;
+        _this.menu = new Menu(false);
+        return _this;
+    }
+    SubMenuItem.prototype.add = function (menuItem) {
+        this.menu.add(menuItem);
+    };
+    SubMenuItem.prototype.render = function (x, y, yCaption) {
+        if (this._isSelect) {
+            this.menu.render(x + MainMenu.MENU_WIDTH, y);
+            if (Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
+                if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_RIGHT)) {
+                    MenuPool.displaySubMenu(this.menu);
+                }
+                else {
+                    if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_LEFT)) {
+                        MenuPool.removeSubMenu(this.menu);
+                        MainMenu.LAST_TICK_TIME = Date.now();
+                    }
+                }
+            }
+        }
+        this.draw(x, y, yCaption);
+    };
+    SubMenuItem.prototype.draw = function (x, y, yCaption) {
+        _super.prototype.draw.call(this, x, y, yCaption);
+        CommonMenuTexture.draw("arrowright", x + MainMenu.MENU_DRAW_OFFSET_X - (0.015 * MainMenu.SCREEN_RATIO_WIDTH), y + MainMenu.MENU_DRAW_OFFSET_Y, (0.025 * MainMenu.SCREEN_RATIO_WIDTH), (0.035 * MainMenu.SCREEN_RATIO_HEIGHT), this.textColor, 0);
+    };
+    return SubMenuItem;
+}(MenuItem));
+var MainMenu = (function (_super) {
+    __extends(MainMenu, _super);
+    function MainMenu(title, isVisible) {
+        if (title === void 0) { title = ""; }
+        if (isVisible === void 0) { isVisible = true; }
+        var _this = _super.call(this, isVisible) || this;
+        _this.title = title;
+        _this.firstRender = true;
+        return _this;
+    }
+    Object.defineProperty(MainMenu.prototype, "title", {
+        set: function (value) {
+            this._title = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MainMenu.prototype.render = function (x, y) {
+        if (this.isVisible) {
+            if (this.firstRender) {
+                this.setToItem(0, false);
+                this.firstRender = false;
+            }
+            this.setResolutionRatio();
+            if (x < MainMenu.MENU_DRAW_OFFSET_X) {
+                x += MainMenu.MENU_DRAW_OFFSET_X;
+            }
+            if (y < MainMenu.MAIN_MENU_HEIGHT_OFFSET_Y) {
+                y += MainMenu.MAIN_MENU_HEIGHT;
+            }
+            x = Math.min(x, 1 - MainMenu.MENU_DRAW_OFFSET_X);
+            y = Math.min(y, 1 - MainMenu.MAIN_MENU_HEIGHT_OFFSET_Y);
+            CommonMenuTexture.draw("interaction_bgd", x, y, MainMenu.MENU_WIDTH, MainMenu.MAIN_MENU_HEIGHT, new Color(255, 255, 255, 255), 0);
+            drawText(this._title, [x, y - (MainMenu.MAIN_MENU_HEIGHT_OFFSET_Y / 2)], new Color(), 1, [1, 1], true);
+            y += (MainMenu.MAIN_MENU_HEIGHT / 2);
+            if (Date.now() - MainMenu.CONTROL_TICK_TIME_MS > MainMenu.LAST_TICK_TIME) {
+                if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_DOWN)) {
+                    var menuInstance = MenuPool.getCurrentMenu();
+                    menuInstance.setToItem(menuInstance.currentIndexMenuItems + 1);
+                }
+                else {
+                    if (mp.game.controls.isControlPressed(0, Control.INPUT_CELLPHONE_UP)) {
+                        var menuInstance = MenuPool.getCurrentMenu();
+                        menuInstance.setToItem(menuInstance.currentIndexMenuItems - 1);
+                    }
+                }
+            }
+            _super.prototype.render.call(this, x, y);
+        }
+    };
+    MainMenu.prototype.open = function () {
+        this.isVisible = true;
+    };
+    MainMenu.prototype.close = function () {
+        this.isVisible = false;
+    };
+    MainMenu.prototype.setResolutionRatio = function () {
+        MainMenu.SCREEN_RATIO_WIDTH = 1024 / mp.game.graphics.getScreenActiveResolution(0, 0).x;
+        MainMenu.SCREEN_RATIO_HEIGHT = 768 / mp.game.graphics.getScreenActiveResolution(0, 0).y;
+        MainMenu.MENU_WIDTH = 0.27 * MainMenu.SCREEN_RATIO_WIDTH;
+        MainMenu.MENU_WIDTH = Math.max(MainMenu.MENU_WIDTH, getTextWidth(this._title, 1, [1, 1]) + MainMenu.MENU_WIDTH / 5);
+        MainMenu.MENU_HEIGHT = 0.04 * MainMenu.SCREEN_RATIO_HEIGHT;
+        MainMenu.MAIN_MENU_HEIGHT = MainMenu.MENU_HEIGHT * 2.5;
+        MainMenu.MENU_DRAW_OFFSET_X = MainMenu.MENU_WIDTH / 2;
+        MainMenu.MENU_DRAW_OFFSET_Y = MainMenu.MENU_HEIGHT / 2;
+        MainMenu.MAIN_MENU_HEIGHT_OFFSET_Y = MainMenu.MAIN_MENU_HEIGHT / 2;
+        MainMenu.MENU_ARROW_DOWN_HEIGHT = MainMenu.MENU_HEIGHT / 3;
+    };
+    MainMenu.MAX_MENU_DISPLAY = 8;
+    MainMenu.CONTROL_TICK_TIME_MS = 150;
+    MainMenu.LAST_TICK_TIME = Date.now();
+    return MainMenu;
+}(Menu));
+var MenuPool = (function () {
+    function MenuPool() {
+    }
+    MenuPool.getCurrentMenu = function () {
+        var visibleMenus = MenuPool.MenuInstances.filter(function (value) { return value.isVisible; });
+        return visibleMenus[visibleMenus.length - 1];
+    };
+    MenuPool.displaySubMenu = function (menu) {
+        if (MenuPool.MenuInstances.indexOf(menu) == -1) {
+            MenuPool.MenuInstances.push(menu);
+        }
+        menu.isVisible = true;
+    };
+    MenuPool.removeSubMenu = function (menu) {
+        if (MenuPool.MenuInstances.indexOf(menu) != -1) {
+            MenuPool.MenuInstances.splice(MenuPool.MenuInstances.indexOf(menu), 1);
+            menu.isVisible = false;
+        }
+    };
+    MenuPool.MenuInstances = [];
+    return MenuPool;
+}());
